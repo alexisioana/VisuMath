@@ -1,16 +1,6 @@
-/* ================================================ */
-/* VisuMath — STYLE.CSS                             */
-/* Refactorizat în stilul predat la laborator       */
-/* ================================================ */
-
-/* ================================================ */
-/* VARIABILE CSS GLOBALE                            */
-/* Definite pe body — variabilele de schemă         */
-/* cromatică și valorile reutilizabile              */
-/* ================================================ */
 body {
   /* Schema cromatică — albastru monochromatic */
-  --culoare-principala: #1a73e8;
+  --culoare-principala: #1a73e8;/*cerinta 1 schema cromatica*/
   --culoare-inchisa: #0d47a1;
   --culoare-medie: #4a90d9;
   --culoare-deschisa: #a8c8ec;
@@ -20,6 +10,11 @@ body {
   --culoare-border: #4a90d9;
   --culoare-highlight: #1a73e8;
   --culoare-background-zone: #ffffff;
+  --culoare-zona-1: #b5d0eb;
+  --culoare-zona-2: #f5f9fd;
+  --culoare-zona-3: #c5dcf2;
+  --culoare-zona-4: #9ec5e8;
+  
 
   /* Spațieri laterale (cerința design rudimentar a) */
   --margine-pagina: 60px;
@@ -46,9 +41,50 @@ body {
   background-color: var(--culoare-fundal);
 }
 
-/* ================================================ */
-/* TIPOGRAFIE — fonturi externe                     */
-/* ================================================ */
+/* MEDIA — lățime procentuală + min/max (cerința 3.e) */
+/* MEDIA — lățime procentuală + min/max (cerința 3.e) */
+
+/* Imaginile (în general): scalabile, păstrează aspect ratio */
+img {
+  width: 100%;
+  max-width: var(--media-max-width);
+  min-width: var(--media-min-width);
+  height: auto;
+}
+
+/* Excepție: imaginile cu hartă (usemap) NU se scalează,
+   pentru că area coords ar deveni incorecte */
+img[usemap] {
+  width: auto;
+  min-width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Iframe-ul YouTube din zona video — responsive cu aspect ratio 16:9 */
+#video-lectii iframe {
+  width: 100%;
+  max-width: var(--media-max-width);
+  min-width: var(--media-min-width);
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* Embed-ul PDF — lățime adaptivă, înălțime fixă din HTML */
+embed {
+  width: 100%;
+  max-width: var(--media-max-width);
+  min-width: var(--media-min-width);
+}
+
+/* Iframe-ul Google Maps din footer — lățime adaptivă */
+footer iframe {
+  width: 100%;
+  max-width: var(--media-max-width);
+  min-width: var(--media-min-width);
+}
+/* TIPOGRAFIE — fonturi externe */
+
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
 }
@@ -58,9 +94,7 @@ html {
   transition: font-size 0.4s ease;
 }
 
-/* ================================================ */
-/* HEADER                                           */
-/* ================================================ */
+/* HEADER   */
 header {
   background-color: var(--culoare-principala);
   color: #fff;
@@ -85,9 +119,7 @@ header h1::before {
   font-size: 1.4rem;
 }
 
-/* ================================================ */
-/* MENIU NAVIGARE                                   */
-/* ================================================ */
+/* MENIU NAVIGARE  */
 nav ul {
   list-style: none;
   margin: 0;
@@ -141,19 +173,15 @@ nav ul li ul li a {
   border-radius: 0;
 }
 
-/* ================================================ */
-/* MAIN — spațiere laterală                         */
-/* ================================================ */
+/* MAIN — spațiere laterală  */
 main {
   margin-left: var(--margine-pagina);
   margin-right: var(--margine-pagina);
 }
 
-/* ================================================ */
-/* GRID PAGINA — 8 zone                             */
-/* (cerința individuală layout)                     */
-/* ================================================ */
-#grid-pagina {
+/* GRID PAGINA — 8 zone   */
+/* (cerința individuală layout) */
+#grid-pagina { /*cerinta 2 layout responsive cu grid*/
   display: grid;
   gap: var(--gap-grid);
   padding: var(--gap-grid) 0;
@@ -175,13 +203,10 @@ main {
 #evenimente          { grid-area: evenimente; }
 #harta-categorii     { grid-area: harta; }
 
-/* ================================================ */
 /* IZOLAREA VIZUALĂ A ZONELOR                       */
 /* (cerința design rudimentar c)                    */
 /* background, border, border-radius, box-shadow    */
-/* ================================================ */
 #grid-pagina > section {
-  background-color: var(--culoare-background-zone);
   border: var(--border-zona);
   border-radius: var(--border-radius-zone);
   box-shadow: var(--box-shadow-zone);
@@ -206,7 +231,7 @@ main {
 }
 
 #statistici {
-  background-color: var(--culoare-fundal);
+  background-color: var(--culoare-zona-1);
   border-color: var(--culoare-principala);
 }
 
@@ -216,17 +241,32 @@ main {
 }
 
 #intrebari-frecvente {
-  background-color: var(--culoare-fundal);
+  background-color: var(--culoare-zona-3);
+  border-color: var(--culoare-inchisa);
+  border-width: 2px;
 }
 
+
 #harta-categorii {
-  background-color: var(--culoare-fundal);
+  background-color: var(--culoare-background-zone);
   border-color: var(--culoare-border);
 }
 
+#resurse-download {
+  background-color: var(--culoare-zona-2);
+  border-color: var(--culoare-medie);
+}
+
+
+#evenimente {
+  background-color: var(--culoare-zona-4);
+  border-color: var(--culoare-principala);
+}
+
+
 /* ================================================ */
 /* IMAGINE-FEATURED — secțiune internă în zona 1    */
-/* Nu primește bordură proprie                      */
+/* Imagine cu Pi — controlată în dimensiune         */
 /* ================================================ */
 #imagine-featured {
   border: none;
@@ -235,50 +275,49 @@ main {
   padding: 0;
   margin-top: 20px;
   overflow: visible;
+  max-width: 600px;            /* ← LIMITĂ MAXIMĂ */
+  margin-left: auto;            /* ← centrat */
+  margin-right: auto;           /* ← centrat */
 }
 
 #imagine-featured h3 {
   font-size: 1rem;
   color: var(--culoare-inchisa);
   margin-bottom: 10px;
+  text-align: center;
 }
 
 #imagine-featured figure {
   margin: 0;
 }
 
+#imagine-featured a {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--border-radius-zone);
+  box-shadow: var(--box-shadow-zone);
+}
+
 #imagine-featured img {
   width: 100%;
+  max-height: 350px;            /* ← ÎNĂLȚIME MAXIMĂ */
   height: auto;
-  border-radius: var(--border-radius-zone);
+  object-fit: cover;            /* ← păstrează aspect ratio fără deformare */
   display: block;
+  border-radius: var(--border-radius-zone);
+  transition: transform 0.4s ease;
+}
+
+#imagine-featured img:hover {
+  transform: scale(1.03);       /* zoom subtil la hover */
 }
 
 #imagine-featured figcaption {
   font-size: 0.85rem;
   color: var(--culoare-text-secundar);
-  margin-top: 6px;
+  margin-top: 8px;
   font-style: italic;
   text-align: center;
-}
-
-/* ================================================ */
-/* ELEMENTE MEDIA RESPONSIVE                        */
-/* (cerința design rudimentar e)                    */
-/* ================================================ */
-#grid-pagina img,
-#grid-pagina iframe,
-#grid-pagina embed,
-#grid-pagina video {
-  max-width: var(--media-max-width);
-  min-width: var(--media-min-width);
-  height: auto;
-  display: block;
-}
-
-#grid-pagina iframe {
-  height: 315px;
-  width: 100%;
 }
 
 /* ================================================ */
@@ -295,8 +334,6 @@ main {
 
 #program table {
   width: 100%;
-  table-layout: fixed;
-  word-wrap: break-word;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.95rem;
@@ -358,11 +395,9 @@ main {
   color: #fff;
 }
 
-/* ================================================ */
 /* TABURI VIDEO (cerință individuală)               */
 /* Container-ul .container-iframe + .taburi-iframe  */
 /* Linkurile <a> stilizate ca butoane               */
-/* ================================================ */
 .container-iframe {
   display: flex;
   flex-direction: column;
@@ -393,18 +428,14 @@ main {
   background-color: var(--culoare-principala);
 }
 
-/* ================================================ */
 /* ICON ANIMAT (cerință font extern + Font Awesome) */
-/* ================================================ */
 .icon-animat {
   display: inline-block;
-  color: var(--culoare-principala);
+  color: var(--culoare-deschisa);   /* albastru deschis vizibil pe închis */
   margin-right: 6px;
 }
 
-/* ================================================ */
-/* FOOTER                                           */
-/* ================================================ */
+/* FOOTER*/
 footer {
   background-color: var(--culoare-inchisa);
   color: #fff;
@@ -449,16 +480,6 @@ footer small {
   margin-top: 10px;
 }
 
-/* ================================================ */
-/* LINK TOP (cerință individuală)                   */
-/* - poziție fixă                                   */
-/* - bordură rotunjită                              */
-/* - umbră externă                                  */
-/* - triunghi gol &#9651;                           */
-/* - tooltip ::after attr(title)                    */
-/* - opacity 0.6 → 1 la hover                       */
-/* - tranziție 0.5s                                 */
-/* ================================================ */
 #link-top {
   position: fixed;
   bottom: 30px;
@@ -512,10 +533,9 @@ footer small {
   opacity: 1;
 }
 
-/* ================================================ */
-/* MATHML STILIZAT (Bonus etapa 2)                  */
-/* Părți diferite cu stil diferit                   */
-/* ================================================ */
+/* MATHML STILIZAT (Bonus etapa 2) */
+/* Părți diferite cu stil diferit */
+
 math mi {
   color: var(--culoare-principala);
   font-style: italic;
@@ -544,9 +564,8 @@ math msup > mn:last-child {
   color: var(--culoare-text-secundar);
 }
 
-/* ================================================ */
-/* HEADINGS & TEXT                                  */
-/* ================================================ */
+/* HEADINGS & TEXT  */
+
 h2 {
   color: var(--culoare-inchisa);
   margin-top: 0;
@@ -581,9 +600,7 @@ summary {
   color: var(--culoare-principala);
 }
 
-/* ================================================ */
-/* ECRAN MEDIU (max 1200px) — stil profesoară       */
-/* ================================================ */
+/* ECRAN MEDIU (max 1200px)*/
 @media screen and (max-width: 1200px) {
   html {
     font-size: 16px;
@@ -592,6 +609,8 @@ summary {
   body {
     --margine-pagina: 30px;
     --gap-grid: 12px;
+    --media-max-width: 100%;
+    --media-min-width: 80px;
   }
 
   #grid-pagina {
@@ -605,18 +624,21 @@ summary {
       "harta      harta";
   }
 
-  .tabel-container {
-    overflow-x: auto;
-  }
+ .tabel-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Pe ecran mediu/mic, tabelul își păstrează lățimea minimă */
+.tabel-container table {
+  width: auto;              /* ← se extinde după conținut */
+  min-width: 600px;         /* ← lățime minimă forțată */
+}
 
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.15rem; }
 }
 
-/* ================================================ */
-/* ECRAN MIC / MOBIL (max 700px) — stil profesoară  */
-/* Pe mobil gridul DISPARE → display: block         */
-/* ================================================ */
 @media screen and (max-width: 700px) {
   html {
     font-size: 15px;
@@ -625,6 +647,8 @@ summary {
   body {
     --margine-pagina: 12px;
     --gap-grid: 6px;
+    --media-max-width: 100%;
+    --media-min-width: 60px;
   }
 
   /* Gridul devine block — totul curge vertical */
@@ -664,4 +688,13 @@ summary {
 
   h1 { font-size: 1.2rem; }
   h2 { font-size: 1rem; }
+
+  .tabel-container {
+  overflow-x: auto;
+}
+
+.tabel-container table {
+  width: auto;
+  min-width: 500px;     /* ← pe mobil, tabelul are minim 500px */
+}
 }
