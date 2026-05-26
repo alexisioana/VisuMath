@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+
+    <title>Resurse – VisuMath</title>
+    <meta name="keywords" content="resurse matematică, formule PDF, GeoGebra, Khan Academy, fișe descărcabile, materiale liceu">
+    <meta name="description" content="Resurse pentru studiul matematicii: formule esențiale, platforme interactive recomandate și fișe PDF descărcabile.">
+
+    <style>
+      .page-hero {
+        background: linear-gradient(135deg, var(--culoare-medie), var(--culoare-principala));
+        color: #fff;
+        padding: 40px var(--spatiere-laterala-mare);
+        text-align: center;
+      }
+      .page-hero h2 { color: #fff; font-size: 2rem; margin: 0 0 10px 0; }
+      .page-hero p  { margin: 0; opacity: 0.9; }
+
+      .resurse-wrapper {
+        padding: 30px var(--spatiere-laterala-mare);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 768px) {
+        .resurse-wrapper { grid-template-columns: 1fr; }
+      }
+
+      .resurse-card {
+        background: var(--culoare-background-zone);
+        border: 1px solid var(--culoare-border);
+        border-radius: var(--border-radius-zone);
+        box-shadow: var(--box-shadow-zone);
+        padding: 20px;
+      }
+      .resurse-card h2 {
+        margin-top: 0;
+        color: var(--culoare-inchisa);
+      }
+      .resurse-card ul, .resurse-card ol {
+        padding-left: 24px;
+        color: var(--culoare-text-secundar);
+      }
+      .resurse-card li { margin-bottom: 8px; }
+    </style>
+  </head>
+
+  <body id="top">
+
+    <a href="#top" id="link-top" title="Înapoi la începutul paginii">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <div class="page-hero">
+        <h2><i class="fa-solid fa-folder-open"></i> Resurse pentru studiu</h2>
+        <p>Materiale utile, platforme recomandate și fișe descărcabile pentru matematică.</p>
+      </div>
+
+      <div class="resurse-wrapper">
+
+        <section class="resurse-card">
+          <h2><i class="fa-solid fa-book"></i> Materiale utile</h2>
+          <p>
+            În această secțiune găsești resurse utile pentru studiul matematicii:
+            formule esențiale, platforme interactive și materiale PDF.
+          </p>
+          <ul>
+            <li>
+              <a href="https://www.geogebra.org/" target="_blank" rel="noopener">
+                GeoGebra — platformă interactivă pentru geometrie și algebră
+              </a>
+            </li>
+            <li>
+              <a href="https://www.khanacademy.org/math" target="_blank" rel="noopener">
+                Khan Academy — Math (cursuri video gratuite)
+              </a>
+            </li>
+            <li>
+              <a href="/resurse/formule.pdf" download="visumath-formule-esentiale.pdf">
+                Descarcă fișa de formule esențiale
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="resurse-card">
+          <h2><i class="fa-solid fa-file-pdf"></i> Fișe PDF</h2>
+          <p>
+            Fișele PDF conțin formule și exerciții rezolvate pentru:
+          </p>
+          <ol>
+            <li>Algebră</li>
+            <li>Geometrie</li>
+            <li>Analiză matematică</li>
+            <li>Statistică</li>
+          </ol>
+        </section>
+
+      </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+  </body>
+</html>

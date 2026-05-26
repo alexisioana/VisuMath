@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+
+    <title>Despre noi – VisuMath</title>
+    <meta name="keywords" content="despre VisuMath, echipa, proiect școlar, matematică vizuală, misiune, tehnologii web">
+    <meta name="description" content="Despre VisuMath — platformă educațională de matematică vizuală. Misiune, obiective și tehnologii folosite.">
+
+    <style>
+      .page-hero {
+        background: linear-gradient(135deg, var(--culoare-inchisa), var(--culoare-medie));
+        color: #fff;
+        padding: 40px var(--spatiere-laterala-mare);
+        text-align: center;
+      }
+      .page-hero h2 { color: #fff; font-size: 2rem; margin: 0 0 10px 0; }
+      .page-hero p  { margin: 0; opacity: 0.9; }
+
+      .despre-wrapper {
+        padding: 30px var(--spatiere-laterala-mare);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .despre-card {
+        background: var(--culoare-background-zone);
+        border: 1px solid var(--culoare-border);
+        border-radius: var(--border-radius-zone);
+        box-shadow: var(--box-shadow-zone);
+        padding: 20px;
+      }
+      .despre-card h2 {
+        margin-top: 0;
+        color: var(--culoare-inchisa);
+      }
+      .despre-card ul {
+        padding-left: 24px;
+        color: var(--culoare-text-secundar);
+      }
+      .despre-card ul li { margin-bottom: 6px; }
+
+      .istoric {
+        padding: 0 var(--spatiere-laterala-mare) 30px;
+      }
+      .istoric h2 { color: var(--culoare-inchisa); }
+      .istoric p { color: var(--culoare-text-secundar); }
+    </style>
+  </head>
+
+  <body id="top">
+
+    <a href="#top" id="link-top" title="Înapoi la începutul paginii">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <div class="page-hero">
+        <h2><i class="fa-solid fa-circle-info"></i> Despre VisuMath</h2>
+        <p>Matematica vizualizată — o platformă creată din pasiune pentru predare.</p>
+      </div>
+
+      <div class="despre-wrapper">
+
+        <section class="despre-card">
+          <h2><i class="fa-solid fa-circle-info"></i> Cine suntem?</h2>
+          <p>
+            <b>VisuMath</b> este o platformă educațională dedicată matematicii vizuale.
+            Scopul proiectului este de a face conceptele matematice mai ușor de
+            înțeles prin exemple, grafice și explicații clare.
+          </p>
+        </section>
+
+        <section class="despre-card">
+          <h2><i class="fa-solid fa-bullseye"></i> Obiectivul proiectului</h2>
+          <p>
+            Platforma oferă lecții, exerciții și materiale interactive pentru
+            elevi și studenți care doresc să își îmbunătățească cunoștințele
+            de matematică, de la algebra de bază până la analiză matematică avansată.
+          </p>
+        </section>
+
+        <section class="despre-card">
+          <h2><i class="fa-solid fa-code"></i> Tehnologii folosite</h2>
+          <ul>
+            <li>HTML5 semantic</li>
+            <li>CSS3 (Grid, Flexbox, variabile)</li>
+            <li>Responsive Design</li>
+            <li>Node.js + Express</li>
+            <li>Template engine EJS</li>
+            <li>Font Awesome 6</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <section class="istoric">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Istoricul proiectului</h2>
+        <p>
+          VisuMath a luat naștere ca <b>proiect școlar</b> în cadrul cursului de
+          <i>Tehnici Web</i> de la Facultatea de Matematică și Informatică, București.
+          Proiectul a fost dezvoltat etapizat: pornind de la HTML semantic (Etapa 1),
+          continuând cu stilizare CSS și responsive design (Etapa 2), implementarea
+          unui meniu de navigare interactiv (Etapa 3), iar acum, în Etapa 4, mutarea
+          întregului site pe Node.js cu template engine EJS — pentru o arhitectură
+          modernă și mentenabilă.
+        </p>
+        <p>
+          Conținutul matematic este orientat către <b>programa de bacalaureat</b>
+          și include lecții din toate ramurile matematicii predate în liceu:
+          algebră, geometrie, analiză matematică și statistică.
+        </p>
+      </section>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+  </body>
+</html>

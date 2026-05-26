@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+
+    <title>Exerciții – VisuMath</title>
+    <meta name="keywords" content="exerciții rezolvate, matematică, bacalaureat, algebră, geometrie, analiză, probleme">
+    <meta name="description" content="Exerciții rezolvate de matematică — algebră, geometrie și analiză matematică pentru bacalaureat.">
+
+    <style>
+      /* Stiluri specifice paginii Exerciții */
+      .page-hero {
+        background: linear-gradient(135deg, var(--culoare-inchisa), var(--culoare-principala));
+        color: #fff;
+        padding: 40px var(--spatiere-laterala-mare);
+        text-align: center;
+      }
+      .page-hero h2 { color: #fff; font-size: 2rem; margin: 0 0 10px 0; }
+      .page-hero p  { margin: 0; opacity: 0.9; }
+
+      .ex-wrapper {
+        padding: 30px var(--spatiere-laterala-mare);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      @media (max-width: 768px) {
+        .ex-wrapper { grid-template-columns: 1fr; }
+      }
+
+      .ex-card {
+        background: var(--culoare-background-zone);
+        border: 1px solid var(--culoare-border);
+        border-radius: var(--border-radius-zone);
+        box-shadow: var(--box-shadow-zone);
+        padding: 20px;
+      }
+      .ex-card h3 { margin-top: 0; color: var(--culoare-inchisa); }
+
+      .dificultate {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .usor   { background: #d4edda; color: #155724; }
+      .mediu  { background: #fff3cd; color: #856404; }
+      .greu   { background: #f8d7da; color: #721c24; }
+
+      .ex-enunt {
+        background: var(--culoare-fundal);
+        border-left: 4px solid var(--culoare-principala);
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+        font-style: italic;
+        margin: 10px 0;
+      }
+      details.rezolvare {
+        margin-top: 10px;
+        border: 1px solid var(--culoare-border);
+        border-radius: 6px;
+        padding: 10px;
+        background: var(--culoare-fundal);
+      }
+      details.rezolvare summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--culoare-principala);
+      }
+    </style>
+  </head>
+
+  <body id="top">
+
+    <a href="#top" id="link-top" title="Înapoi la începutul paginii">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <div class="page-hero">
+        <h2><i class="fa-solid fa-pencil"></i> Exerciții rezolvate</h2>
+        <p>Exersează cu probleme din programa de bacalaureat — fiecare cu soluție detaliată.</p>
+      </div>
+
+      <div class="ex-wrapper">
+
+        <article class="ex-card">
+          <span class="dificultate usor">Ușor</span>
+          <h3>Ecuație de gradul I</h3>
+          <div class="ex-enunt">Rezolvați ecuația: 3x − 7 = 2x + 5</div>
+          <details class="rezolvare">
+            <summary>Vezi rezolvarea</summary>
+            <p>3x − 2x = 5 + 7 → x = 12</p>
+          </details>
+        </article>
+
+        <article class="ex-card">
+          <span class="dificultate mediu">Mediu</span>
+          <h3>Ecuație de gradul II</h3>
+          <div class="ex-enunt">Rezolvați ecuația: x² − 5x + 6 = 0</div>
+          <details class="rezolvare">
+            <summary>Vezi rezolvarea</summary>
+            <p>Δ = 25 − 24 = 1 → x₁ = 3, x₂ = 2</p>
+          </details>
+        </article>
+
+        <article class="ex-card">
+          <span class="dificultate usor">Ușor</span>
+          <h3>Arie triunghi</h3>
+          <div class="ex-enunt">Un triunghi are baza 8 cm și înălțimea 5 cm. Calculați aria.</div>
+          <details class="rezolvare">
+            <summary>Vezi rezolvarea</summary>
+            <p>A = (b × h) / 2 = (8 × 5) / 2 = 20 cm²</p>
+          </details>
+        </article>
+
+        <article class="ex-card">
+          <span class="dificultate mediu">Mediu</span>
+          <h3>Derivata unei funcții</h3>
+          <div class="ex-enunt">Calculați derivata funcției f(x) = x³ − 4x² + 2x − 1.</div>
+          <details class="rezolvare">
+            <summary>Vezi rezolvarea</summary>
+            <p>f′(x) = 3x² − 8x + 2</p>
+          </details>
+        </article>
+
+        <article class="ex-card">
+          <span class="dificultate greu">Greu</span>
+          <h3>Limita unei funcții</h3>
+          <div class="ex-enunt">Calculați: lim(x→2) (x² − 4) / (x − 2)</div>
+          <details class="rezolvare">
+            <summary>Vezi rezolvarea</summary>
+            <p>(x²−4)/(x−2) = (x−2)(x+2)/(x−2) = x+2 → lim = 4</p>
+          </details>
+        </article>
+
+        <article class="ex-card">
+          <span class="dificultate greu">Greu</span>
+          <h3>Probabilitate</h3>
+          <div class="ex-enunt">Se aruncă un zar. Care este probabilitatea de a obține un număr par?</div>
+          <details class="rezolvare">
+            <summary>Vezi rezolvarea</summary>
+            <p>Cazuri favorabile: {2, 4, 6} → P = 3/6 = 1/2</p>
+          </details>
+        </article>
+
+      </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+  </body>
+</html>

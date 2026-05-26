@@ -1,0 +1,32 @@
+{
+  "cale_baza": "resurse/erori",
+  "eroare_default": {
+    "titlu": "Eroare neașteptată",
+    "text": "A apărut o problemă la procesarea cererii. Te rugăm să încerci din nou mai târziu.",
+    "imagine": "default.png"
+  },
+  "info_erori": [
+    {
+      "identificator": 400,
+      "status": true,
+      "titlu": "400 Bad Request",
+      "text": "Cererea trimisă către server este invalidă. Fișierele cu extensia .ejs nu pot fi accesate direct din browser.",
+      "imagine": "400.png"
+    },
+    {
+      "identificator": 403,
+      "status": true,
+      "titlu": "403 Forbidden",
+      "text": "Nu ai permisiunea să accesezi această resursă. Listarea folderelor nu este permisă pe acest server.",
+      "imagine": "403.png"
+    },
+    {
+      "identificator": 404,
+      "status": true,
+      "titlu": "404 Not Found",
+      "text": "Pagina pe care o cauți nu a fost găsită. Verifică adresa URL sau folosește meniul pentru a naviga.",
+      "imagine": "404.png"
+    }
+  ]
+  
+}

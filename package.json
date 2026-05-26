@@ -1,0 +1,33 @@
+{
+  "name": "visumath",
+  "version": "1.0.0",
+  "description": "VisuMath - platforma educationala de matematica vizualizata",
+  "keywords": [
+    "matematica",
+    "lectii",
+    "educatie",
+    "algebra",
+    "geometrie",
+    "analiza",
+    "statistica"
+  ],
+  "homepage": "https://github.com/alexisioana/VisuMath#readme",
+  "bugs": {
+    "url": "https://github.com/alexisioana/VisuMath/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexisioana/VisuMath.git"
+  },
+  "license": "ISC",
+  "author": "Pavlov Alexis-Ioana",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  }
+}

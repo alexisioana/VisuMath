@@ -1,0 +1,15 @@
+# Pachete Node (regenerabile cu npm install)
+node_modules/
+
+# Foldere generate de aplicație la pornire (cerința 20)
+temp/
+logs/
+backup/
+fisiere_uploadate/
+
+# Fișiere de sistem
+.DS_Store
+Thumbs.db
+
+# Fișiere VS Code (opțional)
+.vscode/

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+
+    <title>VisuMath – Matematică vizualizată</title>
+    <meta name="keywords" content="matematică vizuală, lecții matematică online, algebră, geometrie, analiză matematică, tutoriale matematică, exerciții rezolvate, formule matematică">
+    <meta name="description" content="VisuMath – platformă educațională de matematică vizuală cu lecții interactive, exerciții rezolvate pas cu pas și formule pentru elevi de liceu și studenți.">
+  </head>
+
+  <body id="top">
+
+    <!-- LINK TOP — buton fix colț stânga jos -->
+    <a href="#top" id="link-top" title="Înapoi la începutul paginii">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <div id="grid-pagina">
+
+        <section id="despre">
+          <hgroup>
+            <h2>Despre VisuMath</h2>
+            <p>Platforma ta de matematică vizuală — lecții clare, exerciții practice, rezultate reale.</p>
+          </hgroup>
+          <p>
+            Bine ai venit pe <b>VisuMath</b>, platforma ta de <b>matematică vizuală</b>!
+            Oferim <b>lecții matematică online</b> gratuite, tutoriale matematică
+            interactive și exerciții rezolvate pas cu pas pentru elevi de liceu și studenți.
+            Folosim metode moderne de predare, inclusiv
+            <abbr title="Graphics Interchange Format — format de animații folosit în explicații vizuale">GIF</abbr>-uri
+            animate și diagrame interactive pentru a face conceptele ușor de înțeles.
+            După cum spunea Henri Poincaré,
+            <q>matematica este arta de a da același nume la lucruri diferite</q>.
+          </p>
+          <blockquote>
+            <p>„Matematica este regina științelor și aritmetica este regina matematicii."</p>
+            <footer>— Carl Friedrich Gauss</footer>
+          </blockquote>
+          <dl>
+            <dt>Algebră</dt>
+            <dd>Ramură a matematicii care studiază structurile, relațiile și cantitățile folosind simboluri și litere.</dd>
+            <dt>Geometrie</dt>
+            <dd>Ramură a matematicii care studiază formele, dimensiunile și proprietățile figurilor în spațiu și plan.</dd>
+            <dt>Analiză matematică</dt>
+            <dd>Ramură a matematicii care studiază limitele, derivatele, integralele și seriile de funcții.</dd>
+          </dl>
+
+          <section id="imagine-featured">
+            <h3>Matematica în imagini</h3>
+            <figure>
+              <a href="/resurse/img/matematica-mare.jpg">
+                <picture>
+                  <source media="(max-width: 480px)" srcset="/resurse/img/matematica-mic.jpg">
+                  <source media="(max-width: 1024px)" srcset="/resurse/img/matematica-mediu.jpg">
+                  <img
+                    src="/resurse/img/matematica-mare.jpg"
+                    alt="Formule și concepte de matematică vizualizate pe o tablă"
+                    title="Matematică vizuală — explorează conceptele prin imagini">
+                </picture>
+              </a>
+              <figcaption>
+                Matematica vizualizată — de la formule abstracte la concepte clare și intuitive.
+                Click pe imagine pentru versiunea completă.
+              </figcaption>
+            </figure>
+          </section>
+
+          <section id="lectii-disponibile">
+            <h3>Lecții disponibile</h3>
+            <p>
+              Explorează lecții de algebră, geometrie, analiză matematică și statistică.
+              Fiecare lecție de matematică vizuală este însoțită de formule matematică
+              explicate clar și exerciții rezolvate pentru o înțelegere completă.
+            </p>
+            <p>
+              Pentru resurse suplimentare de matematică, îți recomandăm
+              <a href="https://www.geogebra.org" target="_blank">GeoGebra</a> —
+              o platformă interactivă gratuită pentru vizualizarea conceptelor geometrice și algebrice.
+            </p>
+            <p>
+              Documentația completă despre funcții matematice poate fi găsită la
+              <a href="https://en.wikipedia.org/wiki/List_of_mathematical_functions#Elementary_functions">
+                https://en.wikipedia.org/<wbr>wiki/<wbr>List_of_mathematical_functions<wbr>#Elementary_functions
+              </a>.
+            </p>
+
+            <section id="categorii">
+              <h4>Categorii de lecții</h4>
+              <p>
+                Tutorialele noastre de matematică acoperă toate capitolele din programa
+                școlară. Găsești exerciții rezolvate de algebră, geometrie și analiză matematică,
+                alături de formule matematică esențiale, toate explicate vizual.
+              </p>
+              <p>
+                Un exemplu clasic — <b>formula soluțiilor ecuației de gradul al II-lea</b>
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                  <mi>a</mi>
+                  <msup>
+                    <mi>x</mi>
+                    <mn>2</mn>
+                  </msup>
+                  <mo>+</mo>
+                  <mi>b</mi>
+                  <mi>x</mi>
+                  <mo>+</mo>
+                  <mi>c</mi>
+                  <mo>=</mo>
+                  <mn>0</mn>
+                </math>
+                :
+              </p>
+              <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <msub><mi>x</mi><mrow><mn>1</mn><mo>,</mo><mn>2</mn></mrow></msub>
+                <mo>=</mo>
+                <mfrac>
+                  <mrow>
+                    <mo>-</mo>
+                    <mi>b</mi>
+                    <mo>±</mo>
+                    <msqrt>
+                      <msup><mi>b</mi><mn>2</mn></msup>
+                      <mo>-</mo>
+                      <mn>4</mn>
+                      <mi>a</mi>
+                      <mi>c</mi>
+                    </msqrt>
+                  </mrow>
+                  <mrow>
+                    <mn>2</mn>
+                    <mi>a</mi>
+                  </mrow>
+                </mfrac>
+              </math>
+              <p>
+                Această formulă, cunoscută și ca <b>discriminantul</b>, este una dintre cele mai
+                importante din algebra de liceu și apare frecvent în subiectele de bacalaureat.
+              </p>
+            </section>
+          </section>
+        </section>
+
+        <section id="program">
+          <h2>Programul complet al cursurilor</h2>
+          <div class="tabel-container">
+            <table>
+              <caption>Programul cursurilor și webinariilor VisuMath — Semestrul I 2026</caption>
+              <thead>
+                <tr>
+                  <th>Curs</th>
+                  <th>Categorie</th>
+                  <th>Data</th>
+                  <th>Durata</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Introducere în Algebră</td>
+                  <td rowspan="2">Algebră</td>
+                  <td>10 mai 2026</td>
+                  <td>60 min</td>
+                </tr>
+                <tr>
+                  <td>Funcții și grafice</td>
+                  <td>17 mai 2026</td>
+                  <td>90 min</td>
+                </tr>
+                <tr>
+                  <td>Geometrie plană</td>
+                  <td rowspan="2">Geometrie</td>
+                  <td>24 mai 2026</td>
+                  <td>60 min</td>
+                </tr>
+                <tr>
+                  <td>Geometrie în spațiu</td>
+                  <td>31 mai 2026</td>
+                  <td>90 min</td>
+                </tr>
+                <tr>
+                  <td>Limite și derivate</td>
+                  <td>Analiză matematică</td>
+                  <td>7 iunie 2026</td>
+                  <td>120 min</td>
+                </tr>
+                <tr>
+                  <td>Statistică și probabilități</td>
+                  <td>Statistică</td>
+                  <td>14 iunie 2026</td>
+                  <td>60 min</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total cursuri: 6</td>
+                  <td>480 min</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+
+   <section id="video-lectii">
+  <h2>
+    <i class="fa-solid fa-spinner fa-spin icon-animat"></i>
+    Lecție video introductivă
+  </h2>
+  <p>Vizionează prezentarea introductivă VisuMath despre matematica vizuală:</p>
+
+  <video
+    class="video-lectie"
+    poster="/resurse/video/visumath-poster.jpg"
+    controls
+    preload="metadata">
+    <source src="/resurse/video/visumath-lectie.webm" type="video/webm">
+    <source src="/resurse/video/visumath-lectie.mp4" type="video/mp4">
+
+    <track
+      kind="subtitles"
+      src="/resurse/video/subtitrari-ro.vtt"
+      srclang="ro"
+      label="Română"
+      default>
+
+    <track
+      kind="subtitles"
+      src="/resurse/video/subtitrari-en.vtt"
+      srclang="en"
+      label="English">
+
+    Browserul tău nu suportă elementul video HTML5.
+  </video>
+
+  <!-- Iframe YouTube păstrat ca alternativă -->
+  <h3>Alte lecții recomandate</h3>
+  <div class="container-iframe">
+    <div class="taburi-iframe">
+      <a href="https://www.youtube.com/embed/kpCJyQ2usJ4" target="ifr-matematica">Frumusețea algebrei</a>
+      <a href="https://www.youtube.com/embed/NybHckSEQBI" target="ifr-matematica">Introducere în geometrie</a>
+      <a href="https://www.youtube.com/embed/kpCJyQ2usJ4" target="ifr-matematica">De ce contează matematica</a>
+    </div>
+    <iframe
+      name="ifr-matematica"
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/videoseries?list=PLl5HZqQ7FcCI0A2SxT3mtT_cNdXWZpJzV&autoplay=1&mute=1&loop=1"
+      title="Lecție de matematică"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+        <section id="statistici">
+          <h2>
+            <i class="fa-solid fa-chart-bar"></i>
+            Statistici VisuMath
+          </h2>
+          <p>
+            Participanți confirmați la webinarul de Analiză Matematică
+            (maxim 100 locuri):
+            <meter value="23" min="0" max="100" low="30" high="80" optimum="90">
+              23 din 100 locuri ocupate
+            </meter>
+            23/100
+          </p>
+          <p>
+            Participanți confirmați la cursul de Algebră pentru Bacalaureat
+            (maxim 100 locuri):
+            <meter value="87" min="0" max="100" low="30" high="80" optimum="90">
+              87 din 100 locuri ocupate
+            </meter>
+            87/100
+          </p>
+        </section>
+
+        <section id="resurse-download">
+          <h2>Resurse descărcabile</h2>
+          <p>
+            Descarcă fișa cu formule esențiale de matematică:
+            <a href="/resurse/formule.pdf" download="visumath-formule-esentiale.pdf">
+              Descarcă fișa de formule
+            </a>
+          </p>
+          <embed
+            src="/resurse/formule.pdf"
+            type="application/pdf"
+            width="800"
+            height="500">
+        </section>
+
+        <section id="intrebari-frecvente">
+          <h2>Întrebări frecvente</h2>
+          <details>
+            <summary>Ce niveluri de matematică acoperă VisuMath?</summary>
+            <p>VisuMath acoperă matematica de liceu (clasele IX-XII), inclusiv algebră, geometrie,
+            analiză matematică și statistică, conform programei școlare românești.</p>
+          </details>
+          <details>
+            <summary>Lecțiile de pe VisuMath sunt gratuite?</summary>
+            <p>Da, toate lecțiile, exercițiile rezolvate și materialele descărcabile de pe VisuMath
+            sunt complet gratuite. Nu este necesar niciun abonament.</p>
+          </details>
+          <details>
+            <summary>Cum pot descărca fișele de formule?</summary>
+            <p>Mergi în secțiunea <b>Resurse descărcabile</b> și dai click pe butonul de descărcare.
+            Fișele sunt disponibile în format PDF și pot fi tipărite.</p>
+          </details>
+          <details>
+            <summary>Pot participa la webinarii dacă sunt student?</summary>
+            <p>Absolut! Webinariile VisuMath sunt deschise atât elevilor de liceu cât și studenților
+            din primul an de facultate care doresc să își consolideze cunoștințele de matematică.</p>
+          </details>
+        </section>
+
+        <section id="evenimente">
+          <h2>Evenimente VisuMath</h2>
+          <ol>
+            <li>
+              <time datetime="2026-05-10T14:00">10 mai 2026, ora 14:00</time> —
+              <b>Webinar: Introducere în Analiză Matematică</b>
+              <p>Sesiune online gratuită dedicată noțiunilor de bază din analiza matematică: limite, continuitate și derivate. Perfectă pentru elevii de clasa a XI-a.</p>
+            </li>
+            <li>
+              <time datetime="2026-05-17T10:00">17 mai 2026, ora 10:00</time> —
+              <b>Atelier: Geometrie vizuală cu GeoGebra</b>
+              <p>Atelier practic în care vom folosi GeoGebra pentru a vizualiza figuri geometrice și a înțelege proprietățile lor în mod interactiv.</p>
+            </li>
+            <li>
+              <time datetime="2026-05-24T16:00">24 mai 2026, ora 16:00</time> —
+              <b>Sesiune de exerciții: Algebră pentru Bacalaureat</b>
+              <p>Rezolvăm împreună cele mai frecvente tipuri de exerciții de algebră din subiectele de bacalaureat din ultimii 5 ani.</p>
+            </li>
+            <li>
+              <time datetime="2026-06-07T11:00">7 iunie 2026, ora 11:00</time> —
+              <b>Concurs: Olimpiada VisuMath</b>
+              <p>Concurs online de matematică deschis tuturor elevilor de liceu. Premii constând în abonamente gratuite și diplome de participare.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section id="harta-categorii">
+          <h2>Explorează categoriile interactiv</h2>
+          <p>Click pe un simbol matematic pentru a sări direct la categoria dorită:</p>
+          <img
+            src="/resurse/img/categorii-harta.jpg"
+            alt="Hartă interactivă cu categoriile de matematică: Algebră, Geometrie, Analiză, Statistică"
+            usemap="#categorii-map"
+            width="600"
+            height="400">
+          <map name="categorii-map">
+            <area shape="rect" coords="0,0,300,200"   href="#categorii"  alt="Algebră"            title="Vezi lecții de algebră">
+            <area shape="rect" coords="300,0,600,200"  href="#categorii"  alt="Geometrie"           title="Vezi lecții de geometrie">
+            <area shape="rect" coords="0,200,300,400"  href="#categorii"  alt="Analiză matematică"  title="Vezi lecții de analiză matematică">
+            <area shape="rect" coords="300,200,600,400" href="#evenimente" alt="Statistică"          title="Vezi lecții de statistică">
+          </map>
+        </section>
+
+      </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+  </body>
+</html>

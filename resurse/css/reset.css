@@ -17,11 +17,8 @@ nav, section, summary {
   padding: 0;
 }
 
-html {
-  font-size: 17px; /* dimensiunea de bază — va fi suprascrisă în media queries */
-  line-height: 1.5;
-  -webkit-text-size-adjust: 100%; /* previne zoom automat pe iOS la rotate */
-  scroll-behavior: smooth;
+html { 
+  -webkit-text-size-adjust: 100%; 
 }
 
 body {
@@ -60,19 +57,6 @@ table {
   border-spacing: 0;
 }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-  background: none;
-  border: none;
-}
 
 blockquote,
 q {
@@ -89,11 +73,6 @@ q::after {
 abbr[title] {
   text-decoration: none;
   cursor: help;
-}
-
-article, aside, details, figcaption, figure,
-footer, header, main, nav, section, summary {
-  display: block;
 }
 
 strong, b {

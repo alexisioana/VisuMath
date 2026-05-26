@@ -1,6 +1,5 @@
 body {
-  /* Schema cromatică — albastru monochromatic */
-  --culoare-principala: #1a73e8;/*cerinta 1 schema cromatica*/
+  --culoare-principala: #1a73e8;
   --culoare-inchisa: #0d47a1;
   --culoare-medie: #4a90d9;
   --culoare-deschisa: #a8c8ec;
@@ -14,23 +13,12 @@ body {
   --culoare-zona-2: #f5f9fd;
   --culoare-zona-3: #c5dcf2;
   --culoare-zona-4: #9ec5e8;
-  
-
-  /* Spațieri laterale (cerința design rudimentar a) */
   --margine-pagina: 60px;
-
-  /* Gap-uri între celulele gridului (cerința design rudimentar b) */
   --gap-grid: 20px;
-
-  /* Padding intern al zonelor (cerința design rudimentar d) */
   --padding-zone: 20px;
-
-  /* Bordură și aspect zone */
   --border-radius-zone: 10px;
   --box-shadow-zone: 0 2px 10px rgba(0, 0, 0, 0.08);
   --border-zona: 1px solid var(--culoare-border);
-
-  /* Dimensiuni media (cerința design rudimentar e) */
   --media-min-width: 120px;
   --media-max-width: 100%;
 
@@ -41,10 +29,6 @@ body {
   background-color: var(--culoare-fundal);
 }
 
-/* MEDIA — lățime procentuală + min/max (cerința 3.e) */
-/* MEDIA — lățime procentuală + min/max (cerința 3.e) */
-
-/* Imaginile (în general): scalabile, păstrează aspect ratio */
 img {
   width: 100%;
   max-width: var(--media-max-width);
@@ -52,8 +36,6 @@ img {
   height: auto;
 }
 
-/* Excepție: imaginile cu hartă (usemap) NU se scalează,
-   pentru că area coords ar deveni incorecte */
 img[usemap] {
   width: auto;
   min-width: auto;
@@ -61,7 +43,6 @@ img[usemap] {
   height: auto;
 }
 
-/* Iframe-ul YouTube din zona video — responsive cu aspect ratio 16:9 */
 #video-lectii iframe {
   width: 100%;
   max-width: var(--media-max-width);
@@ -70,20 +51,17 @@ img[usemap] {
   height: auto;
 }
 
-/* Embed-ul PDF — lățime adaptivă, înălțime fixă din HTML */
 embed {
   width: 100%;
   max-width: var(--media-max-width);
   min-width: var(--media-min-width);
 }
 
-/* Iframe-ul Google Maps din footer — lățime adaptivă */
 footer iframe {
   width: 100%;
   max-width: var(--media-max-width);
   min-width: var(--media-min-width);
 }
-/* TIPOGRAFIE — fonturi externe */
 
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
@@ -94,7 +72,7 @@ html {
   transition: font-size 0.4s ease;
 }
 
-/* HEADER   */
+/* HEADER  */
 header {
   background-color: var(--culoare-principala);
   color: #fff;
@@ -111,7 +89,7 @@ header h1 {
   gap: 10px;
 }
 
-/* Icon static în titlul header-ului */
+/* Icon static */
 header h1::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
@@ -143,36 +121,6 @@ nav ul li a {
   transition: background 0.2s;
 }
 
-nav ul li a:hover {
-  background-color: var(--culoare-inchisa);
-}
-
-/* Submenu */
-nav ul li ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--culoare-inchisa);
-  border-radius: 8px;
-  padding: 8px 0;
-  min-width: 180px;
-  z-index: 100;
-  flex-direction: column;
-  gap: 0;
-  box-shadow: var(--box-shadow-zone);
-}
-
-nav ul li:hover > ul {
-  display: flex;
-}
-
-nav ul li ul li a {
-  padding: 8px 16px;
-  display: block;
-  border-radius: 0;
-}
-
 /* MAIN — spațiere laterală  */
 main {
   margin-left: var(--margine-pagina);
@@ -180,17 +128,16 @@ main {
 }
 
 /* GRID PAGINA — 8 zone   */
-/* (cerința individuală layout) */
-#grid-pagina { /*cerinta 2 layout responsive cu grid*/
+#grid-pagina {
   display: grid;
   gap: var(--gap-grid);
   padding: var(--gap-grid) 0;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    "prezentare prezentare prezentare"
-    "program    program    video"
-    "statistici resurse    video"
-    "faq        evenimente harta";
+    "prezentare prezentare prezentare prezentare prezentare"
+    "program    program    video      video     video"
+    "statistici resurse    video      video     video"
+    "faq        evenimente evenimente harta     harta";
 }
 
 /* Asignarea zonelor */
@@ -203,9 +150,7 @@ main {
 #evenimente          { grid-area: evenimente; }
 #harta-categorii     { grid-area: harta; }
 
-/* IZOLAREA VIZUALĂ A ZONELOR                       */
-/* (cerința design rudimentar c)                    */
-/* background, border, border-radius, box-shadow    */
+/* IZOLAREA VIZUALĂ A ZONELOR  */
 #grid-pagina > section {
   border: var(--border-zona);
   border-radius: var(--border-radius-zone);
@@ -214,7 +159,6 @@ main {
   overflow: hidden;
 }
 
-/* Background-uri diferite pe zone diferite */
 #despre {
   background-color: var(--culoare-deschisa);
   border-color: var(--culoare-medie);
@@ -264,10 +208,7 @@ main {
 }
 
 
-/* ================================================ */
-/* IMAGINE-FEATURED — secțiune internă în zona 1    */
-/* Imagine cu Pi — controlată în dimensiune         */
-/* ================================================ */
+/* IMAGINE-FEATURED — secțiune internă în zona 1  */
 #imagine-featured {
   border: none;
   box-shadow: none;
@@ -275,9 +216,9 @@ main {
   padding: 0;
   margin-top: 20px;
   overflow: visible;
-  max-width: 600px;            /* ← LIMITĂ MAXIMĂ */
-  margin-left: auto;            /* ← centrat */
-  margin-right: auto;           /* ← centrat */
+  max-width: 600px;            
+  margin-left: auto;           
+  margin-right: auto;           
 }
 
 #imagine-featured h3 {
@@ -300,16 +241,16 @@ main {
 
 #imagine-featured img {
   width: 100%;
-  max-height: 350px;            /* ← ÎNĂLȚIME MAXIMĂ */
+  max-height: 350px;            
   height: auto;
-  object-fit: cover;            /* ← păstrează aspect ratio fără deformare */
+  object-fit: cover;            
   display: block;
   border-radius: var(--border-radius-zone);
   transition: transform 0.4s ease;
 }
 
 #imagine-featured img:hover {
-  transform: scale(1.03);       /* zoom subtil la hover */
+  transform: scale(1.03);       
 }
 
 #imagine-featured figcaption {
@@ -320,14 +261,7 @@ main {
   text-align: center;
 }
 
-/* ================================================ */
-/* TABEL (cerință individuală stilizare-tabel)      */
-/* - caption sub tabel                              */
-/* - borduri alternate c1/c2                        */
-/* - inset 5px pe tabel                             */
-/* - hover outline 5px / 0.5s                       */
-/* - scroll orizontal pe ecran mic                  */
-/* ================================================ */
+/*stilizare-tabel*/                          
 .tabel-container {
   width: 100%;
 }
@@ -379,7 +313,6 @@ main {
   border-bottom: 1px solid var(--culoare-principala);
 }
 
-/* Hover outline 5px transparent / 0.5s */
 #program table tbody td {
   box-shadow: inset 0 0 0 0 transparent;
   transition: box-shadow 0.5s ease;
@@ -395,9 +328,9 @@ main {
   color: #fff;
 }
 
-/* TABURI VIDEO (cerință individuală)               */
+/* TABURI VIDEO  */
 /* Container-ul .container-iframe + .taburi-iframe  */
-/* Linkurile <a> stilizate ca butoane               */
+/* Linkurile <a> stilizate ca butoane */
 .container-iframe {
   display: flex;
   flex-direction: column;
@@ -406,32 +339,33 @@ main {
 
 .taburi-iframe {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 8px;
   margin-bottom: 12px;
 }
 
-.taburi-iframe a {
+/*stilizare taburi link*/
+.taburi-iframe a { 
   display: inline-block;
   padding: 8px 14px;
-  background-color: var(--culoare-medie);
+  background-color: var(--culoare-principala);
   color: #fff;
   border: 1px solid var(--culoare-principala);
   border-radius: 6px;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: background 0.2s;
+  transition: background 0.5s;
 }
 
 .taburi-iframe a:hover {
-  background-color: var(--culoare-principala);
+  background-color: var(--culoare-deschisa);
 }
 
-/* ICON ANIMAT (cerință font extern + Font Awesome) */
+/* icon animat */
 .icon-animat {
   display: inline-block;
-  color: var(--culoare-deschisa);   /* albastru deschis vizibil pe închis */
+  color: var(--culoare-deschisa);   
   margin-right: 6px;
 }
 
@@ -490,34 +424,37 @@ footer small {
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: var(--culoare-principala);
-  color: #fff;
+  background-color: var(--culoare-zona-2);     
+  color: var(--culoare-medie);                
   border-radius: 50%;
-  border: 2px solid var(--culoare-inchisa);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--culoare-medie);
+  box-shadow: 0 5px 18px  rgba(13, 71, 161, 0.45);
   text-decoration: none;
-  opacity: 0.6;
-  transition: opacity 0.5s, background-color 0.5s;
+  opacity: 0.85;
+  transition: opacity 0.5s, background-color 0.5s, color 0.5s, box-shadow 0.5s, border-color 0.5s;
 }
 
 #link-top:hover {
   opacity: 1;
-  background-color: var(--culoare-inchisa);
+  background-color: var(--culoare-deschisa);   
+  color: var(--culoare-inchisa);                 
+  border-color: var(--culoare-inchisa);
+  box-shadow: 0 8px 26px rgba(13, 71, 161, 0.7);
 }
 
 #triunghi {
   display: block;
   font-size: 1.4rem;
   line-height: 1;
-  color: #fff;
+  color: inherit;
 }
 
 #link-top::after {
   content: attr(title);
   position: absolute;
   bottom: 58px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  transform: none;
   background-color: var(--culoare-inchisa);
   color: #fff;
   padding: 5px 12px;
@@ -533,7 +470,7 @@ footer small {
   opacity: 1;
 }
 
-/* MATHML STILIZAT (Bonus etapa 2) */
+/* MATHML STILIZAT  */
 /* Părți diferite cu stil diferit */
 
 math mi {
@@ -624,15 +561,14 @@ summary {
       "harta      harta";
   }
 
- .tabel-container {
+ .tabel-container { 
   overflow-x: auto;
   width: 100%;
 }
 
-/* Pe ecran mediu/mic, tabelul își păstrează lățimea minimă */
 .tabel-container table {
-  width: auto;              /* ← se extinde după conținut */
-  min-width: 600px;         /* ← lățime minimă forțată */
+  width: auto;              
+  min-width: 600px;         
 }
 
   h1 { font-size: 1.5rem; }
@@ -650,8 +586,7 @@ summary {
     --media-max-width: 100%;
     --media-min-width: 60px;
   }
-
-  /* Gridul devine block — totul curge vertical */
+/* ecran mic grid*/
   #grid-pagina {
     display: block;
   }
@@ -668,12 +603,13 @@ summary {
     height: 200px;
   }
 
-  /* Animații dezactivate pe mobil */
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-
+  /* Animații și tranziții dezactivate pe mobil */
+*,
+*::before,
+*::after {
+  animation: none !important;
+  transition: none !important;
+}
   nav ul {
     flex-direction: column;
     gap: 8px;
@@ -697,4 +633,165 @@ summary {
   width: auto;
   min-width: 500px;     /* ← pe mobil, tabelul are minim 500px */
 }
+}
+/* Cerința 16 - info utilizator în footer */
+.info-utilizator {
+    font-size: 0.85rem;
+    color: var(--culoare-text-secundar);
+    background: var(--culoare-fundal);
+    padding: 8px 16px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.info-utilizator i {
+    margin-right: 6px;
+    color: var(--culoare-principala);
+}
+
+/* ====================================================== */
+/* Cerința video-vtt - stilizare video și subtitrări      */
+/* ====================================================== */
+
+/* Cerința: lățime % + min/max */
+.video-lectie {
+  display: block;
+  width: 80%;              /* lățime în procente */
+  min-width: 320px;        /* min — să nu devină inutilizabil pe mobil */
+  max-width: 900px;        /* max — să nu fie uriaș pe ecrane mari */
+  margin: 20px auto;
+  border: 3px solid var(--culoare-medie);
+  border-radius: var(--border-radius-zone);
+  box-shadow: var(--box-shadow-zone);
+  background: #000;
+}
+
+/* ====================================================== */
+/* Stilizarea textului VTT — folosește pseudo-elem ::cue  */
+/* ====================================================== */
+
+/* Toate subtitrările - culori c1 deschisă (background) și c2 închisă (text) */
+.video-lectie::cue {
+  background-color: var(--culoare-deschisa);   /* c1 deschis */
+  color: var(--culoare-inchisa);               /* c2 închis */
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+
+/* Stilizare specifică pentru elemente <b> din interiorul cue-ului */
+.video-lectie::cue(b) {
+  color: var(--culoare-principala);
+  font-weight: 900;
+}
+
+/* Stilizare pentru cuvinte subliniate <u> */
+.video-lectie::cue(u) {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--culoare-principala);
+}
+
+/* ====================================================== */
+/* Cerința stilizare-linkuri (etapa 4)                    */
+/* ====================================================== */
+
+/* --- 1. Variabilă pentru linkuri vizitate --- */
+body {
+  --culoare-link-vizitat: var(--culoare-inchisa);
+  --culoare-pata-link: rgba(26, 115, 232, 0.45);
+}
+
+/* Linkurile vizitate (din main) capătă această culoare */
+main a:visited {
+  color: var(--culoare-link-vizitat);
+}
+
+
+/* --- 2. Linkuri externe — pseudo-element ::before cu simbolul ↗ --- */
+main a[href^="http"]::before {
+  content: "↗";
+  font-size: 1.5em;            /* 50% mai mare — unitate relativă */
+  color: var(--culoare-principala);
+  margin-right: 0.2em;
+  display: inline-block;
+  transition: color 0.3s ease;
+  vertical-align: middle;
+}
+
+/* La hover pe linkul extern, simbolul își schimbă culoarea */
+main a[href^="http"]:hover::before {
+  color: var(--culoare-inchisa);
+}
+
+
+/* --- 3. Pata radială pentru linkuri din main --- */
+main a {
+  text-decoration: underline;
+  color: var(--culoare-text);
+
+  /* Gradient radial cu albastru-principal semi-transparent
+     ca să se vadă bine și pe fundal alb, și pe fundal albastru-deschis */
+background-image: radial-gradient(
+    ellipse,
+    var(--culoare-pata-link) 0%,
+    transparent 70%
+  );
+
+  /* Inițial dimensiune 0 (pata invizibilă) */
+  background-size: 0% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* Tranziție smooth pentru creșterea petei */
+  transition: background-size 0.5s ease;
+
+  /* Padding mic ca pata să nu fie tăiată */
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+/* La hover, pata crește la 100% */
+main a:hover {
+  background-size: 100% 100%;
+}
+
+
+/* --- 4. Border la :active (când dăm click) --- */
+main a:active {
+  outline: 2px solid var(--culoare-text);
+  outline-offset: 1px;
+}
+
+
+/* --- 5. EXCEPȚII — linkuri unde NU vrem efectul de pată --- */
+/* Linkurile din footer au deja propria stilizare (rămân așa) */
+footer a {
+  background-image: none;
+  padding: 0;
+}
+
+/* Linkurile din taburi-iframe (butoanele video) au stilizare proprie */
+.taburi-iframe a {
+  background-image: none;
+  padding: 8px 14px;  /* păstrăm padding-ul lor original */
+  text-decoration: none;
+}
+
+.taburi-iframe a::before {
+  content: none;  /* fără simbol ↗ pe butoanele de tab */
+}
+
+/* Linkul "Înapoi la început" din main */
+main a[href="#top"] {
+  background-image: none;
+}
+
+/* Linkurile area din image map nu trebuie să aibă pată */
+main area::before {
+  content: none;
 }

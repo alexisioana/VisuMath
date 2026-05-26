@@ -1,10 +1,4 @@
-/* ============================================================
-   menu.css — compilat din menu.scss
-   cerinta: variante-meniu
-   ============================================================ */
-
-nav ul li > a,
-nav ul li ul li a {
+nav ul li > a, nav ul li ul li a {
   text-decoration: none;
   font-weight: 600;
   display: flex;
@@ -26,9 +20,6 @@ nav ul li ul li a {
   overflow: visible;
 }
 
-
-/* ── KEYFRAMES ── */
-
 @keyframes bar-intro {
   0% {
     opacity: 0;
@@ -46,28 +37,20 @@ nav ul li ul li a {
     background-color: #fff;
   }
 }
-
 @keyframes menu-cade {
   0% {
     opacity: 0;
-    transform: rotate(90deg) translateX(35%) translateY(-20%);
+    transform: rotate(-90deg);
   }
-  60% {
-    opacity: 0.9;
-    transform: rotate(-4deg) translateX(-2%) translateY(2%);
-  }
-  80% {
-    transform: rotate(2deg) translateX(1%) translateY(0%);
+  50% {
+    opacity: 0.5;
+    transform: rotate(-45deg);
   }
   100% {
     opacity: 1;
-    transform: rotate(0deg) translateX(0) translateY(0);
+    transform: rotate(0deg);
   }
 }
-
-
-/* ── HAMBURGER ── */
-
 .nav-toggle-input {
   display: none;
 }
@@ -76,15 +59,14 @@ nav ul li ul li a {
   display: none;
   cursor: pointer;
   padding: 5px;
-  margin-left: auto;
+  margin-right: auto;
+  order: -1;
 }
-
 .hamburger-label .hamburger-icon {
   position: relative;
   width: 28px;
   height: 22px;
 }
-
 .hamburger-label .hamburger-icon .bar {
   position: absolute;
   left: 0;
@@ -94,17 +76,27 @@ nav ul li ul li a {
   border-radius: 2px;
   animation: bar-intro 0.5s ease both;
 }
+.hamburger-label .hamburger-icon .bar.bar-1 {
+  top: 0;
+}
+.hamburger-label .hamburger-icon .bar.bar-2 {
+  top: 8px;
+}
+.hamburger-label .hamburger-icon .bar.bar-3 {
+  top: 16px;
+}
 
-.hamburger-label .hamburger-icon .bar.bar-1 { top: 0; }
-.hamburger-label .hamburger-icon .bar.bar-2 { top: 8px; }
-.hamburger-label .hamburger-icon .bar.bar-3 { top: 16px; }
+.hamburger-icon .bar:nth-child(1) {
+  animation-delay: 0ms;
+}
 
-.hamburger-icon .bar:nth-child(1) { animation-delay: 0ms; }
-.hamburger-icon .bar:nth-child(2) { animation-delay: 150ms; }
-.hamburger-icon .bar:nth-child(3) { animation-delay: 300ms; }
+.hamburger-icon .bar:nth-child(2) {
+  animation-delay: 150ms;
+}
 
-
-/* ── HEADER ── */
+.hamburger-icon .bar:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 header {
   position: relative;
@@ -113,14 +105,10 @@ header {
   flex-wrap: wrap;
   gap: 10px;
 }
-
 header h1 {
   flex: 1;
   margin: 0;
 }
-
-
-/* ── NAV ECRAN MARE ── */
 
 nav ul {
   list-style: none;
@@ -132,106 +120,87 @@ nav ul {
   align-items: center;
   position: relative;
 }
-
 nav ul li {
   position: relative;
 }
-
 nav ul li > a {
   padding: 7px 12px;
 }
-
 nav ul li > a i,
 nav ul li > a .nav-text {
   position: relative;
   z-index: 1;
 }
-
-nav > ul > li > a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    var(--culoare-principala) 0%,
-    var(--culoare-inchisa) 100%
-  );
-  transform: translateX(0);
-  transition: transform 0.45s ease;
-  z-index: 0;
-  border-radius: inherit;
-}
-
-nav > ul > li > a:hover::before {
-  transform: translateX(-50%);
-}
-
 nav ul li ul {
   display: block;
   position: absolute;
   top: 100%;
   left: 0;
+  margin: 0;
   background-color: var(--culoare-inchisa);
-  border-radius: 8px;
-  padding: 6px 0;
-  min-width: 200px;
+  border-radius: 0;
+  padding: 0;
+  min-width: 100%;
+  width: auto;
   z-index: 200;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   transform: scaleY(0);
   transform-origin: center center;
-  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.8s ease;
 }
-
 nav ul li ul li a {
-  padding: 9px 18px;
+  display: block;
+  padding: 12px 18px;
+  text-align: left;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 nav ul li ul li a:hover {
   background-color: var(--culoare-medie);
   color: var(--culoare-inchisa);
 }
-
 nav ul li:hover > ul {
   transform: scaleY(1);
 }
 
+nav > ul > li:not(:has(> ul)) > a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 4px;
+  background: linear-gradient(to right, var(--culoare-principala) 0%, var(--culoare-principala) 50%, var(--culoare-deschisa) 50%, var(--culoare-deschisa) 100%);
+  transform: translateX(0);
+  transition: transform 0.45s ease;
+  z-index: 0;
+}
 
-/* ── ECRAN MEDIU (≤1200px) ── */
+nav > ul > li:not(:has(> ul)) > a:hover::before {
+  transform: translateX(-50%);
+}
 
 @media screen and (max-width: 1200px) {
   nav ul li > a {
     padding: 8px 10px;
   }
-
   nav ul li > a .nav-text {
     display: none;
   }
-
   nav ul li > a i {
     font-size: 1.2rem;
   }
-
   nav ul {
     gap: 2px;
   }
 }
-
-
-/* ── ECRAN MIC (≤700px) ── */
-
 @media screen and (max-width: 700px) {
-
   .hamburger-label {
     display: flex;
     align-items: center;
   }
-
   nav {
-    display: none;
+    display: block;
+    visibility: hidden;
     position: absolute;
     top: 100%;
     left: 0;
@@ -241,45 +210,36 @@ nav ul li:hover > ul {
     border-top: 2px solid var(--culoare-medie);
     border-radius: 0 0 10px 10px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    transform-origin: top right;
+    transform-origin: top left;
+    transform: rotate(-90deg);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0s 0.5s !important;
   }
-
   nav ul {
     flex-direction: column;
     gap: 0;
     align-items: stretch;
     text-align: center;
   }
-
-  nav ul li {
-    position: static;
-  }
-
   nav ul li > a {
     padding: 16px 20px;
     border-radius: 0;
     font-size: 1.1rem;
     justify-content: center;
   }
-
   nav ul li > a::before {
     display: none;
   }
-
   nav ul li > a .nav-text {
     display: inline;
   }
-
   nav ul li > a:hover {
     background-color: var(--culoare-medie);
     color: var(--culoare-inchisa);
   }
-
   nav ul li:first-child > a .nav-text {
     display: none;
   }
-
-  /* Submeniu mobil — !important suprascrie transition: none !important din style.css */
   nav ul li ul {
     position: static;
     border-radius: 0;
@@ -289,42 +249,39 @@ nav ul li:hover > ul {
     padding: 0;
     max-height: 0;
     overflow: hidden;
-    transform: rotate(-4deg);
-    transform-origin: top center;
     opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease, max-height 0.45s ease !important;
+    transition: transform 0.9s ease, opacity 0.4s ease, max-height 0.45s ease !important;
   }
-
   nav ul li ul li a {
     padding: 13px 36px;
     font-size: 1rem;
     justify-content: center;
     text-align: center;
   }
-
   nav ul li ul li a:hover {
     background-color: var(--culoare-medie);
     color: var(--culoare-inchisa);
   }
-
-  nav ul li.activ > ul {
-  transform  : rotate(0deg);
-  opacity    : 1;
-  max-height : 400px;
-}
-
-  /* !important — suprascrie animation: none !important din style.css */
+  nav ul li:hover > ul, nav ul li:focus-within > ul, nav ul li.activ > ul {
+    opacity: 1;
+    max-height: 400px;
+  }
   .nav-toggle-input:checked ~ nav {
-    display: block;
-    animation: menu-cade 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+    visibility: visible;
+    transform: rotate(0deg);
+    opacity: 1;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, visibility 0s !important;
   }
-
-  /* Bare hamburger — reimpostam animatia cu !important */
   .hamburger-label .hamburger-icon .bar {
-    animation: bar-intro 0.5s ease both !important;
+    animation: bar-intro 0.7s ease both !important;
   }
-
-  .hamburger-icon .bar:nth-child(1) { animation-delay: 0ms !important; }
-  .hamburger-icon .bar:nth-child(2) { animation-delay: 150ms !important; }
-  .hamburger-icon .bar:nth-child(3) { animation-delay: 300ms !important; }
-}
+  .hamburger-icon .bar:nth-child(1) {
+    animation-delay: 0ms !important;
+  }
+  .hamburger-icon .bar:nth-child(2) {
+    animation-delay: 150ms !important;
+  }
+  .hamburger-icon .bar:nth-child(3) {
+    animation-delay: 300ms !important;
+  }
+}/*# sourceMappingURL=menu.css.map */
