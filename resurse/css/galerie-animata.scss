@@ -1,0 +1,90 @@
+// Fișier SCSS generat automat de Node.js
+// Pentru galeria animată — bonus 1 etapa 5
+// Numărul de imagini: 9 (dinamică)
+
+$nr-imagini-galerie: 9;
+$rand-coloana-galerie: 3;
+$dimensiune-galerie: 500px;
+$durata-totala: 18s;
+
+// Border-image pentru galerie
+$border-imagine: url("/resurse/img/border-galerie.png");
+$border-slice: 33%;
+$border-width: 30px;
+
+.galerie-animata {
+  position: relative;
+  width: $dimensiune-galerie;
+  height: $dimensiune-galerie;
+  margin: 30px auto;
+  overflow: hidden;          // CRITIC: ascunde gridul când e mărit
+  border: $border-width solid transparent;
+  border-image-source: $border-imagine;
+  border-image-slice: 33%;
+  border-image-width: $border-width;
+  border-image-repeat: round;
+  background: #fff;
+}
+
+// Grid-ul intern - $rand × $rand
+.galerie-animata-grid {
+  display: grid;
+  grid-template-columns: repeat($rand-coloana-galerie, 1fr);
+  grid-template-rows: repeat($rand-coloana-galerie, 1fr);
+  width: 100%;
+  height: 100%;
+  transform-origin: top left;        // CRITIC: scale și translate se fac din colțul stânga-sus
+  animation: zoom-galerie $durata-totala infinite ease-in-out;
+}
+
+.galerie-animata-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// Hover pe galerie → animația se oprește pe poziția curentă
+.galerie-animata:hover .galerie-animata-grid {
+  animation-play-state: paused;
+}
+
+// Keyframes generate dinamic pentru 9 imagini
+@keyframes zoom-galerie {
+  0% { transform: scale(1) translate(0, 0); }
+  3.33% { transform: scale(3) translate(0.0000%, 0.0000%); }
+  7.78% { transform: scale(3) translate(0.0000%, 0.0000%); }
+  11.11% { transform: scale(1) translate(0%, 0%); }
+  14.44% { transform: scale(3) translate(-33.3333%, 0.0000%); }
+  18.89% { transform: scale(3) translate(-33.3333%, 0.0000%); }
+  22.22% { transform: scale(1) translate(0%, 0%); }
+  25.56% { transform: scale(3) translate(-66.6667%, 0.0000%); }
+  30.00% { transform: scale(3) translate(-66.6667%, 0.0000%); }
+  33.33% { transform: scale(1) translate(0%, 0%); }
+  36.67% { transform: scale(3) translate(-66.6667%, -33.3333%); }
+  41.11% { transform: scale(3) translate(-66.6667%, -33.3333%); }
+  44.44% { transform: scale(1) translate(0%, 0%); }
+  47.78% { transform: scale(3) translate(-33.3333%, -33.3333%); }
+  52.22% { transform: scale(3) translate(-33.3333%, -33.3333%); }
+  55.56% { transform: scale(1) translate(0%, 0%); }
+  58.89% { transform: scale(3) translate(0.0000%, -33.3333%); }
+  63.33% { transform: scale(3) translate(0.0000%, -33.3333%); }
+  66.67% { transform: scale(1) translate(0%, 0%); }
+  70.00% { transform: scale(3) translate(0.0000%, -66.6667%); }
+  74.44% { transform: scale(3) translate(0.0000%, -66.6667%); }
+  77.78% { transform: scale(1) translate(0%, 0%); }
+  81.11% { transform: scale(3) translate(-33.3333%, -66.6667%); }
+  85.56% { transform: scale(3) translate(-33.3333%, -66.6667%); }
+  88.89% { transform: scale(1) translate(0%, 0%); }
+  92.22% { transform: scale(3) translate(-66.6667%, -66.6667%); }
+  96.67% { transform: scale(3) translate(-66.6667%, -66.6667%); }
+  100.00% { transform: scale(1) translate(0%, 0%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+// Ascunsă pe ecran mediu și mic
+@media screen and (max-width: 1024px) {
+  .galerie-animata-wrapper {
+    display: none;
+  }
+}

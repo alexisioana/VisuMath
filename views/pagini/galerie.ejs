@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+
+    <title>Galerie – VisuMath</title>
+    <meta name="keywords" content="galerie matematică, vizualizări, concepte matematice, lecții vizuale">
+    <meta name="description" content="Galerie de imagini cu concepte matematice vizualizate, actualizată lunar.">
+  </head>
+
+  <body id="top">
+
+    <a href="#top" id="link-top" title="Înapoi la începutul paginii">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <div class="page-hero">
+        <h2><i class="fa-solid fa-image"></i> Galeria VisuMath</h2>
+        <p>Concepte matematice vizualizate. Galeria se schimbă în funcție de luna calendaristică.</p>
+      </div>
+
+      <div class="galerie-wrapper">
+        <%- include('../fragmente/galerie') %>
+      </div>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+  </body>
+</html>

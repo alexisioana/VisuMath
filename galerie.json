@@ -1,0 +1,145 @@
+{
+  "cale_galerie": "resurse/img/galerie",
+  "imagini": [
+    {
+      "cale_fisier": "01-ecuatia-gradul-2.jpg",
+      "titlu": "Ecuație 2°",
+      "alt": "Formula ecuației de gradul II cu discriminantul",
+      "text_descriere": "Formula generală a ecuației de gradul al II-lea și calculul discriminantului. Fundament pentru algebra de liceu.",
+      "luni": ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "02-teorema-pitagora.jpg",
+      "titlu": "Pitagora",
+      "alt": "Triunghi dreptunghic cu laturile a, b, c și formula a²+b²=c²",
+      "text_descriere": "Cea mai cunoscută teoremă din geometria plană, esențială pentru calculul distanțelor.",
+      "luni": ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "03-cerc-trigonometric.jpg",
+      "titlu": "Cerc trig",
+      "alt": "Cerc trigonometric cu axe și unghiul theta",
+      "text_descriere": "Reprezentarea grafică a funcțiilor trigonometrice prin cercul unitate.",
+      "luni": ["februarie", "aprilie", "iunie", "august", "octombrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "04-derivata.jpg",
+      "titlu": "Derivata",
+      "alt": "Grafic cu o curbă și o tangentă reprezentând derivata",
+      "text_descriere": "Conceptul de derivată ca limită a raportului între variațiile funcției și ale argumentului.",
+      "luni": ["martie", "aprilie", "mai", "septembrie", "octombrie", "noiembrie"]
+    },
+    {
+      "cale_fisier": "05-fibonacci.jpg",
+      "titlu": "Fibonacci",
+      "alt": "Pătrate cu dimensiuni Fibonacci aranjate în spirală",
+      "text_descriere": "Faimoasa secvență recursivă care apare frecvent în natură: 1, 1, 2, 3, 5, 8, 13...",
+      "luni": ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "06-numarul-pi.jpg",
+      "titlu": "Pi",
+      "alt": "Simbolul matematic pi cu formula pentru aria și circumferința cercului",
+      "text_descriere": "Constanta matematică ce raportează circumferința la diametrul cercului, aproximativ 3.14159.",
+      "luni": ["martie", "iunie", "septembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "07-integrala.jpg",
+      "titlu": "Integrala",
+      "alt": "Grafic cu aria sub o curbă reprezentând integrala definită",
+      "text_descriere": "Aria de sub curba unei funcții între două limite, fundamentală pentru calculul integral.",
+      "luni": ["aprilie", "mai", "octombrie", "noiembrie"]
+    },
+    {
+      "cale_fisier": "08-multimi.jpg",
+      "titlu": "Mulțimi",
+      "alt": "Diagrame Venn cu mulțimile N, Z, Q, R suprapuse",
+      "text_descriere": "Ierarhia mulțimilor de numere: naturale, întregi, raționale, reale.",
+      "luni": ["ianuarie", "februarie", "septembrie", "octombrie"]
+    },
+    {
+      "cale_fisier": "09-probabilitate.jpg",
+      "titlu": "Zar P",
+      "alt": "Zar cu 6 puncte și formula probabilității",
+      "text_descriere": "Calculul probabilității ca raportul între cazurile favorabile și cele posibile.",
+      "luni": ["mai", "iunie", "noiembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "10-statistica.jpg",
+      "titlu": "Statistică",
+      "alt": "Histogramă cu bare colorate și formula mediei aritmetice",
+      "text_descriere": "Reprezentarea distribuției datelor sub formă de histogramă și calculul mediei.",
+      "luni": ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "11-numarul-aur.jpg",
+      "titlu": "Auriu φ",
+      "alt": "Dreptunghi de aur divizat în pătrate cu raportul phi",
+      "text_descriere": "Raportul de aur φ = (1+√5)/2 ≈ 1.618, omniprezent în artă și natură.",
+      "luni": ["februarie", "aprilie", "iunie", "august", "octombrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "12-limite.jpg",
+      "titlu": "Limite",
+      "alt": "Grafic hiperbolă 1/x cu limita la infinit",
+      "text_descriere": "Conceptul de limită, baza analizei matematice. Limita lui 1/x când x → ∞ este 0.",
+      "luni": ["martie", "mai", "iulie", "septembrie", "noiembrie"]
+    },
+    {
+      "cale_fisier": "13-matrice.jpg",
+      "titlu": "Matrice",
+      "alt": "Matrice 3x3 cu elemente generice",
+      "text_descriere": "Structură matematică tabelară fundamentală în algebra liniară.",
+      "luni": ["ianuarie", "martie", "mai", "iulie", "septembrie", "noiembrie"]
+    },
+    {
+      "cale_fisier": "14-vectori.jpg",
+      "titlu": "Vectori",
+      "alt": "Vectori în sistem de coordonate",
+      "text_descriere": "Mărimi cu direcție și sens, esențiale în fizică și geometrie.",
+      "luni": ["februarie", "aprilie", "mai", "iunie", "octombrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "15-logaritmi.jpg",
+      "titlu": "Logaritmi",
+      "alt": "Graficul funcției logaritmice",
+      "text_descriere": "Operația inversă exponențierii, utilă în calcule complexe.",
+      "luni": ["ianuarie", "mai", "august", "noiembrie"]
+    },
+    {
+      "cale_fisier": "16-poligoane.jpg",
+      "titlu": "Poligoane",
+      "alt": "Hexagon regulat cu diagonale",
+      "text_descriere": "Figuri geometrice cu n laturi. Suma unghiurilor: (n-2)·180°.",
+      "luni": ["martie", "mai", "iunie", "septembrie"]
+    },
+    {
+      "cale_fisier": "17-progresii.jpg",
+      "titlu": "Progresii",
+      "alt": "Bare reprezentând o progresie aritmetică",
+      "text_descriere": "Șiruri de numere cu rație constantă: aritmetice sau geometrice.",
+      "luni": ["aprilie", "mai", "iulie", "octombrie"]
+    },
+    {
+      "cale_fisier": "18-combinatorica.jpg",
+      "titlu": "Combinări",
+      "alt": "Triunghiul lui Pascal",
+      "text_descriere": "Numărul de moduri de a alege k elemente din n. Triunghiul lui Pascal.",
+      "luni": ["mai", "iunie", "noiembrie", "decembrie"]
+    },
+    {
+      "cale_fisier": "19-complexe.jpg",
+      "titlu": "Complexe",
+      "alt": "Reprezentarea unui număr complex în plan",
+      "text_descriere": "Numere de forma a+bi, reprezentate în planul complex.",
+      "luni": ["ianuarie", "mai", "septembrie"]
+    },
+    {
+      "cale_fisier": "20-trigonometrie.jpg",
+      "titlu": "Sin și Cos",
+      "alt": "Graficele funcțiilor sinus și cosinus",
+      "text_descriere": "Funcțiile trigonometrice fundamentale: sinus și cosinus.",
+      "luni": ["februarie", "mai", "august", "decembrie"]
+    }
+  ]
+}

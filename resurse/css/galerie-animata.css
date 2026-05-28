@@ -1,0 +1,129 @@
+.galerie-animata {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 30px auto;
+  overflow: hidden;
+  border: 30px solid transparent;
+  border-image-source: url("/resurse/img/border-galerie.png");
+  border-image-slice: 33%;
+  border-image-width: 30px;
+  border-image-repeat: round;
+  background: #fff;
+}
+
+.galerie-animata-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  transform-origin: top left;
+  animation: zoom-galerie 18s infinite ease-in-out;
+}
+
+.galerie-animata-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.galerie-animata:hover .galerie-animata-grid {
+  animation-play-state: paused;
+}
+
+@keyframes zoom-galerie {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  3.33% {
+    transform: scale(3) translate(0%, 0%);
+  }
+  7.78% {
+    transform: scale(3) translate(0%, 0%);
+  }
+  11.11% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  14.44% {
+    transform: scale(3) translate(-33.3333%, 0%);
+  }
+  18.89% {
+    transform: scale(3) translate(-33.3333%, 0%);
+  }
+  22.22% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  25.56% {
+    transform: scale(3) translate(-66.6667%, 0%);
+  }
+  30.00% {
+    transform: scale(3) translate(-66.6667%, 0%);
+  }
+  33.33% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  36.67% {
+    transform: scale(3) translate(-66.6667%, -33.3333%);
+  }
+  41.11% {
+    transform: scale(3) translate(-66.6667%, -33.3333%);
+  }
+  44.44% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  47.78% {
+    transform: scale(3) translate(-33.3333%, -33.3333%);
+  }
+  52.22% {
+    transform: scale(3) translate(-33.3333%, -33.3333%);
+  }
+  55.56% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  58.89% {
+    transform: scale(3) translate(0%, -33.3333%);
+  }
+  63.33% {
+    transform: scale(3) translate(0%, -33.3333%);
+  }
+  66.67% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  70.00% {
+    transform: scale(3) translate(0%, -66.6667%);
+  }
+  74.44% {
+    transform: scale(3) translate(0%, -66.6667%);
+  }
+  77.78% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  81.11% {
+    transform: scale(3) translate(-33.3333%, -66.6667%);
+  }
+  85.56% {
+    transform: scale(3) translate(-33.3333%, -66.6667%);
+  }
+  88.89% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  92.22% {
+    transform: scale(3) translate(-66.6667%, -66.6667%);
+  }
+  96.67% {
+    transform: scale(3) translate(-66.6667%, -66.6667%);
+  }
+  100.00% {
+    transform: scale(1) translate(0%, 0%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .galerie-animata-wrapper {
+    display: none;
+  }
+}

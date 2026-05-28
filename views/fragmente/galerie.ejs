@@ -1,0 +1,31 @@
+<%
+// Fragment galerie - utilizat atât pe pagina principală cât și pe pagina dedicată /galerie
+// Primește prin locals: obGalerie (cu imagini și luna_curenta)
+%>
+
+<section class="galerie-statica" aria-label="Galerie de matematică">
+  <h2><i class="fa-solid fa-images"></i> Galerie matematică — <%= obGalerie.luna_curenta %></h2>
+  <p class="galerie-intro">
+    Concepte matematice vizualizate, selectate special pentru luna <strong><%= obGalerie.luna_curenta %></strong>.
+    Toate imaginile sunt sub licență CC0 (creative commons public domain).
+  </p>
+
+  <% if (obGalerie.imagini.length === 0) { %>
+    <p class="galerie-empty">Nu există imagini disponibile pentru luna curentă.</p>
+  <% } else { %>
+    <div class="galerie-grid">
+      <% obGalerie.imagini.forEach((img, idx) => { %>
+        <figure class="galerie-item" title="<%= img.titlu %>">
+          <picture>
+            <source media="(max-width: 1024px)" srcset="/<%= img.cale_relativa_mica %>">
+            <img src="/<%= img.cale_relativa %>" alt="<%= img.alt %>" loading="lazy">
+          </picture>
+          <figcaption>
+            <strong><%= img.titlu %></strong>
+            <span class="galerie-descriere"><%= img.text_descriere %></span>
+          </figcaption>
+        </figure>
+      <% }); %>
+    </div>
+  <% } %>
+</section>

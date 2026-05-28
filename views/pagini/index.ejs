@@ -67,7 +67,17 @@
               </figcaption>
             </figure>
           </section>
-
+          <!-- Efect CSS - Duotone - cerința etapa 5 (efect-css-duotone) -->
+<section id="efect-duotone">
+  <h3><i class="fa-solid fa-palette"></i> Matematica în natură</h3>
+  <p>Treci cu mouse-ul peste imagine pentru a vedea efectul duotone:</p>
+  <div class="duotone-container" aria-label="Peisaj montan cu efect duotone la hover">
+    <div class="duotone-imagine"></div>
+  </div>
+  <figcaption class="duotone-caption">
+    Natura, ca matematica, are propriile sale ritmuri și pattern-uri.
+  </figcaption>
+</section>
           <section id="lectii-disponibile">
             <h3>Lecții disponibile</h3>
             <p>
@@ -273,6 +283,8 @@
             </meter>
             87/100
           </p>
+         
+</table>
         </section>
 
         <section id="resurse-download">
@@ -357,7 +369,88 @@
           </map>
         </section>
 
+        <!-- Efect CSS - Reflexie text - cerința etapa 5 (efect-css-reflexie-text) -->
+<section id="efect-reflexie">
+  <h3>Treci cu mouse-ul peste text pentru a vedea schimbarea de culoare:</h3>
+  <div class="reflexie-container">
+    <span class="text-reflexie" data-text="VisuMath">VisuMath</span>
+  </div>
+  <p class="reflexie-caption">
+    Matematica e ca o oglindă a logicii — simetrică, perfectă, surprinzătoare.
+  </p>
+</section>
+
+        <!-- Tabel responsive - cerință etapa 5 efect CSS -->
+<section id="mari-matematicieni">
+  <h2><i class="fa-solid fa-user-graduate"></i> Mari matematicieni</h2>
+  <table class="tabel-responsive">
+    <caption>Cei mai influenți matematicieni din istorie</caption>
+    <thead>
+      <tr>
+        <th>Nume</th>
+        <th>Perioadă</th>
+        <th>Origine</th>
+        <th>Contribuție</th>
+        <th>Domeniu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Nume">Euclid</td>
+        <td data-label="Perioadă">~300 î.Hr.</td>
+        <td data-label="Origine">Grecia antică</td>
+        <td data-label="Contribuție">„Elementele" — bazele geometriei</td>
+        <td data-label="Domeniu">Geometrie</td>
+      </tr>
+      <tr>
+        <td data-label="Nume">Pitagora</td>
+        <td data-label="Perioadă">~570-495 î.Hr.</td>
+        <td data-label="Origine">Grecia antică</td>
+        <td data-label="Contribuție">Teorema lui Pitagora</td>
+        <td data-label="Domeniu">Geometrie</td>
+      </tr>
+      <tr>
+        <td data-label="Nume">Carl Gauss</td>
+        <td data-label="Perioadă">1777-1855</td>
+        <td data-label="Origine">Germania</td>
+        <td data-label="Contribuție">Teoria numerelor, statistica</td>
+        <td data-label="Domeniu">Algebră</td>
+      </tr>
+      <tr>
+        <td data-label="Nume">Leonhard Euler</td>
+        <td data-label="Perioadă">1707-1783</td>
+        <td data-label="Origine">Elveția</td>
+        <td data-label="Contribuție">Analiză matematică, notația e</td>
+        <td data-label="Domeniu">Analiză</td>
+      </tr>
+      <tr>
+        <td data-label="Nume">Isaac Newton</td>
+        <td data-label="Perioadă">1643-1727</td>
+        <td data-label="Origine">Anglia</td>
+        <td data-label="Contribuție">Calculul infinitezimal</td>
+        <td data-label="Domeniu">Analiză</td>
+      </tr>
+      <tr>
+        <td data-label="Nume">Sofia Kovalevskaia</td>
+        <td data-label="Perioadă">1850-1891</td>
+        <td data-label="Origine">Rusia</td>
+        <td data-label="Contribuție">Ecuații cu derivate parțiale</td>
+        <td data-label="Domeniu">Analiză</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- Galerie statică - cerință etapa 5 -->
+        <section id="galerie-pagina-principala">
+          <%- include('../fragmente/galerie') %>
+        </section>
+
       </div>
+  
+<!-- Galerie animată - bonus 1 etapa 5 -->
+<%- include('../fragmente/galerie-animata') %>
     </main>
 
     <%- include('../fragmente/footer') %>

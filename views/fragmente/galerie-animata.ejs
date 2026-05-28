@@ -1,0 +1,26 @@
+<%
+// Fragment galerie animată - bonus 1 etapa 5
+// Primește obGalerieAnimata cu n și imagini
+if (typeof obGalerieAnimata === 'undefined' || !obGalerieAnimata || obGalerieAnimata.n === 0) {
+    obGalerieAnimata = { n: 0, imagini: [] };
+}
+%>
+
+<% if (obGalerieAnimata.n > 0) { %>
+<section id="galerie-animata-section" class="galerie-animata-wrapper">
+    <h2><i class="fa-solid fa-images"></i> Galerie animată</h2>
+    <p>O selecție aleatoare de <%= obGalerieAnimata.n %> concepte matematice. Treci cu mouse-ul peste galerie pentru a opri animația.</p>
+    
+    <div class="galerie-animata">
+        <div class="galerie-animata-grid">
+            <% obGalerieAnimata.imagini.forEach(function(img, idx) { %>
+                <img 
+                    class="galerie-animata-img"
+                    src="/<%= img.cale_relativa %>" 
+                    alt="<%= img.alt %>"
+                    title="<%= img.titlu %>">
+            <% }); %>
+        </div>
+    </div>
+</section>
+<% } %>
