@@ -1,0 +1,2 @@
+Acest folder contine imaginile pentru postere matematice.
+Adaugati imaginile reale cu numele corespunzator din SQL.

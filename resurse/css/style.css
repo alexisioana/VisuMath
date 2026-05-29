@@ -1,3 +1,4 @@
+/* LIGHT-DARK - variabile CSS pentru tema implicita */
 body {
   --culoare-principala: #1a73e8;
   --culoare-inchisa: #0d47a1;
@@ -74,6 +75,7 @@ html {
 
 /* HEADER  */
 header {
+  position: relative;
   background-color: var(--culoare-principala);
   color: #fff;
   padding: var(--padding-zone) var(--margine-pagina);
@@ -87,6 +89,110 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.tema-site {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: -6px 0 10px auto;
+  max-width: 220px;
+}
+
+.tema-site .form-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  margin: 0;
+}
+
+.tema-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+}
+
+body[data-theme="light"] .tema-icon-luna,
+body[data-theme="dark"] .tema-icon-soare,
+body[data-theme="ocean"] .tema-icon-soare,
+body[data-theme="contrast"] .tema-icon-soare {
+  display: none;
+}
+
+/* LIGHT-DARK - variabile CSS pentru tema dark */
+body[data-theme="dark"] {
+  --culoare-principala: #6ea8fe;
+  --culoare-inchisa: #d7e6ff;
+  --culoare-medie: #8bb9f0;
+  --culoare-deschisa: #1f3654;
+  --culoare-fundal: #0f1722;
+  --culoare-text: #eef4ff;
+  --culoare-text-secundar: #b8c6d8;
+  --culoare-border: #5f8fd3;
+  --culoare-highlight: #8bb9f0;
+  --culoare-background-zone: #172232;
+  --culoare-zona-1: #1a2b42;
+  --culoare-zona-2: #101a28;
+  --culoare-zona-3: #1e314b;
+  --culoare-zona-4: #203958;
+  --box-shadow-zone: 0 2px 14px rgba(0, 0, 0, 0.35);
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
+}
+
+/* BONUS2 - tema suplimentara ocean */
+body[data-theme="ocean"] {
+  --culoare-principala: #00a6a6;
+  --culoare-inchisa: #063f4d;
+  --culoare-medie: #138a9e;
+  --culoare-deschisa: #b7ecec;
+  --culoare-fundal: #e8fbfb;
+  --culoare-text: #082f38;
+  --culoare-text-secundar: #42656b;
+  --culoare-border: #138a9e;
+  --culoare-highlight: #00a6a6;
+  --culoare-background-zone: #ffffff;
+  --culoare-zona-1: #c9f1f1;
+  --culoare-zona-2: #f3ffff;
+  --culoare-zona-3: #d7f7f7;
+  --culoare-zona-4: #a7dddd;
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
+}
+
+/* BONUS2 - tema suplimentara contrast */
+body[data-theme="contrast"] {
+  --culoare-principala: #ffd400;
+  --culoare-inchisa: #ffffff;
+  --culoare-medie: #ffef7a;
+  --culoare-deschisa: #3a3a3a;
+  --culoare-fundal: #050505;
+  --culoare-text: #ffffff;
+  --culoare-text-secundar: #efefef;
+  --culoare-border: #ffd400;
+  --culoare-highlight: #ffd400;
+  --culoare-background-zone: #111111;
+  --culoare-zona-1: #171717;
+  --culoare-zona-2: #0a0a0a;
+  --culoare-zona-3: #202020;
+  --culoare-zona-4: #2a2a2a;
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
+}
+
+body[data-theme="dark"] #sectiune-filtre,
+body[data-theme="dark"] .card-produs,
+body[data-theme="dark"] .pagina-produs,
+body[data-theme="dark"] #sectiune-produse,
+body[data-theme="contrast"] #sectiune-filtre,
+body[data-theme="contrast"] .card-produs,
+body[data-theme="contrast"] .pagina-produs,
+body[data-theme="contrast"] #sectiune-produse {
+  background-color: var(--culoare-background-zone);
+  color: var(--culoare-text);
 }
 
 /* Icon static */
@@ -756,7 +862,6 @@ main a[href^="http"]:hover::before {
 }
 
 
-/* --- 3. Pata radială pentru linkuri din main --- */
 main a {
   text-decoration: underline;
   color: var(--culoare-text);
@@ -823,15 +928,15 @@ main area::before {
   content: none;
 }
 
+
 /* ====================================================== */
 /* Cerința galerie-statica (etapa 5)                     */
+/* Pattern tablă-de-șah cu celule goale între imagini    */
 /* ====================================================== */
 
-/* CONTAINER GALERIE */
 .galerie-statica {
   width: 100%;
   padding: 30px 0;
-  /* counter CSS pentru indexarea cu litere grecești */
   counter-reset: imagini-galerie;
 }
 
@@ -858,129 +963,144 @@ main area::before {
   font-style: italic;
 }
 
-/* GRID PRINCIPAL — Ecran mare: 3 coloane */
+/* === GRID PRINCIPAL — 3 coloane, celule pătrate === */
 .galerie-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 10px;
   width: 100%;
+  padding: 20px;
+  background: var(--culoare-background-zone);
 }
 
-/* PATTERN CARORI — alternanță alb/negru pe ecran mare */
-/* Coloanele 1 și 3 alternează: imagine 1-negru, 4-alb, 7-negru, 10-alb */
-/* Coloana 2 alternează invers: 2-alb, 5-negru, 8-alb, 11-negru */
-.galerie-grid .galerie-item:nth-child(6n+1),
-.galerie-grid .galerie-item:nth-child(6n+3),
-.galerie-grid .galerie-item:nth-child(6n+5) {
-  background-color: var(--culoare-text);  /* fundal "negru" */
-}
-.galerie-grid .galerie-item:nth-child(6n+2),
-.galerie-grid .galerie-item:nth-child(6n+4),
-.galerie-grid .galerie-item:nth-child(6n+6) {
-  background-color: var(--culoare-background-zone);  /* fundal "alb" */
-}
-
-/* ITEM GALERIE */
+/* === TOATE CELULELE (poze ȘI goluri) — bordură identică === */
 .galerie-item {
   position: relative;
   margin: 0;
-  padding: 12px;
-  border: 3px solid var(--culoare-inchisa);
-  border-radius: 8px;
-  overflow: hidden;
+  padding: 0;
+  aspect-ratio: 1 / 1;                      /* PĂTRAT PERFECT */
+  border: 8px solid var(--culoare-inchisa);  /* bordură exterioară */
+  border-radius: 2px;
   display: flex;
-  flex-direction: column;
-  /* Incrementăm counter-ul pentru fiecare item */
-  counter-increment: imagini-galerie;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
 }
 
-.galerie-item img {
+/* === CELULELE CU IMAGINE — negru solid === */
+.galerie-item--imagine {
+  background-color: var(--culoare-text);     /* fundal NEGRU */
+  counter-increment: imagini-galerie;
+  flex-direction: column;
+  padding: 8px;
+  /* Bordura interioară albă pentru efectul "ramă" din PDF */
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.galerie-item--imagine picture {
   width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
+  height: 100%;
+  display: block;
+}
+
+.galerie-item--imagine img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 4px;
-  /* Tranziție 1s + 100ms cum cere baremul */
   transition: filter 1.1s ease;
 }
 
-/* FIGCAPTION cu indexare litere grecești */
-.galerie-item figcaption {
-  background: var(--culoare-deschisa);
-  color: var(--culoare-inchisa);
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  /* Tranziție scale 1s + 100ms cum cere baremul */
-  transform-origin: center;
+/* === CELULELE GOALE — alb === */
+.galerie-item--gol {
+  background-color: #ffffff;                /* fundal ALB */
+  /* Bordura interioară albastră pentru efectul "ramă" din PDF */
+  box-shadow: inset 0 0 0 4px var(--culoare-background-zone);
+}
+
+.galerie-item--imagine figcaption {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--culoare-background-zone) 88%, transparent);
+  color: var(--culoare-text);
+  border: 1px solid var(--culoare-deschisa);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  line-height: 1.25;
   transform: scale(1);
+  transform-origin: center center;
   transition: transform 1.1s ease;
+  z-index: 2;
 }
 
-/* Indexare cu litere grecești (α, β, γ, δ, ...) - cerință explicită */
-.galerie-item figcaption::before {
+.galerie-item--imagine figcaption::before {
   content: "(" counter(imagini-galerie, lower-greek) ") ";
-  font-weight: 900;
+  font-weight: 800;
   color: var(--culoare-principala);
-  font-size: 1.05rem;
 }
 
-.galerie-item figcaption strong {
-  display: block;
+.galerie-item--imagine figcaption strong {
+  display: inline;
   color: var(--culoare-inchisa);
-  font-size: 1rem;
-  margin-bottom: 4px;
+  margin-right: 0.25rem;
 }
 
 .galerie-descriere {
   color: var(--culoare-text-secundar);
-  font-size: 0.85rem;
-  display: block;
 }
 
-/* HOVER — cerință: imagine cu contrast 200%, figcaption se scalează */
-.galerie-item:hover img {
+.galerie-atribuire {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+}
+
+.galerie-atribuire a {
+  color: var(--culoare-principala);
+}
+
+/* HOVER — la trecere cu mouse-ul */
+.galerie-item--imagine:hover img {
   filter: contrast(200%);
 }
 
-.galerie-item:hover figcaption {
-  transform: scale(1.05);
+.galerie-item--imagine:hover figcaption {
+  transform: scale(1.08);
 }
 
-/* Pentru itemii cu fundal "negru", textul descrierii trebuie să fie vizibil */
-.galerie-grid .galerie-item:nth-child(6n+1) figcaption,
-.galerie-grid .galerie-item:nth-child(6n+3) figcaption,
-.galerie-grid .galerie-item:nth-child(6n+5) figcaption {
-  /* Pe fundal negru, păstrăm figcaption-ul deschis (e contrast bun) */
-  box-shadow: 0 0 0 2px var(--culoare-principala);
-}
-
-
-/* ECRAN MEDIU — 2 coloane (768px - 1024px) */
+/* === ECRAN MEDIU (≤1024px) — 2 coloane, FĂRĂ celule goale === */
 @media screen and (max-width: 1024px) {
   .galerie-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    background: var(--culoare-background-zone);
   }
-  /* Resetăm pattern-ul carouri pentru ecran mediu */
-  .galerie-grid .galerie-item:nth-child(n) {
-    background-color: var(--culoare-background-zone);
+
+  /* Ascundem celulele goale pe ecran mediu */
+  .galerie-item--gol {
+    display: none;
   }
 }
 
-/* ECRAN MIC — 1 coloană */
+/* === ECRAN MIC (≤700px) — 1 coloană === */
 @media screen and (max-width: 700px) {
   .galerie-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+    background: var(--culoare-background-zone);
+  }
+
+  .galerie-item--gol {
+    display: none;
   }
 }
 
 /* Galerie integrată în grid-pagina (pe index.ejs) */
 #galerie-pagina-principala {
-  grid-column: 1 / -1;  /* ocupă toată lățimea grid-ului din index */
+  grid-column: 1 / -1;
   background-color: var(--culoare-background-zone);
   border-color: var(--culoare-medie);
 }
@@ -992,7 +1112,6 @@ main area::before {
 /* ====================================================== */
 /* Efect CSS: DUOTONE (etapa 5)                          */
 /* Identificator: efect-css-duotone                      */
-/* ====================================================== */
 
 #efect-duotone {
   margin: 30px var(--margine-pagina);
@@ -1013,64 +1132,61 @@ main area::before {
   color: var(--culoare-principala);
 }
 
-/* CONTAINER cu imaginea ca background */
 .duotone-container {
-  position: relative;          /* pentru poziționarea pseudoelementelor */
+  position: relative;         
   width: 100%;
   max-width: 500px;
   height: 400px;
   margin: 20px auto;
-  overflow: hidden;            /* ascunde pseudoelementele când sunt în afara cadrului */
+  overflow: hidden;           
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  isolation: isolate;
 }
 
-/* DIV-ul interior cu imaginea efectivă */
 .duotone-imagine {
   position: absolute;
-  inset: 0;                    /* echivalent cu top:0; left:0; right:0; bottom:0; */
-  background-image: url("/resurse/img/duotone-demo.jpg");
+  inset: 0;                    
+  background-image: url("/resurse/img/galerie/03-cerc-trigonometric.jpg");
   background-size: cover;
   background-position: center;
+  z-index: 1;
 }
 
-/* PSEUDOELEMENTUL BEFORE — culoarea c1 (albastru închis) */
-/* Inițial: ascuns în STÂNGA (left: -100%) */
 .duotone-container::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -100%;                 /* INIȚIAL ascuns în stânga */
+  left: -100%;                 
   width: 100%;
   height: 100%;
-  background-color: var(--culoare-inchisa);  /* c1 - albastru închis */
-  mix-blend-mode: lighten;     /* luminează pixelii întunecați */
+  background-color: var(--culoare-inchisa); 
+  mix-blend-mode: multiply;
+  opacity: 0.78;
   transition: left 0.6s ease;
   z-index: 2;
 }
 
-/* PSEUDOELEMENTUL AFTER — culoarea c2 (albastru deschis) */
-/* Inițial: ascuns în DREAPTA (right: -100%) */
 .duotone-container::after {
   content: "";
   position: absolute;
   top: 0;
-  right: -100%;                /* INIȚIAL ascuns în dreapta */
+  right: -100%;                
   width: 100%;
   height: 100%;
-  background-color: var(--culoare-deschisa);  /* c2 - albastru deschis */
-  mix-blend-mode: darken;      /* întunecă pixelii luminoși */
+  background-color: var(--culoare-deschisa); 
+  mix-blend-mode: multiply;
+  opacity: 0.78;
   transition: right 0.6s ease;
   z-index: 3;
 }
 
-/* HOVER — pseudoelementele "intră" peste imagine */
 .duotone-container:hover::before {
-  left: 0;                     /* vine din stânga */
+  left: 0;                    
 }
 
 .duotone-container:hover::after {
-  right: 0;                    /* vine din dreapta */
+  right: 0;                   
 }
 
 .duotone-caption {
@@ -1080,11 +1196,8 @@ main area::before {
   font-size: 0.9rem;
 }
 
-/* ====================================================== */
 /* Efect CSS: TABEL RESPONSIVE (etapa 5)                 */
-/* ====================================================== */
 
-/* DESKTOP — tabel normal */
 .tabel-responsive {
   width: 100%;
   border-collapse: collapse;
@@ -1141,7 +1254,6 @@ main area::before {
     display: none;
   }
 
-  /* Tabelul în sine devine "block" — nu mai e tabel pe mobil */
   .tabel-responsive,
   .tabel-responsive tbody,
   .tabel-responsive tr,
@@ -1150,7 +1262,6 @@ main area::before {
     width: 100%;
   }
 
-  /* Fiecare rând devine un card distinct */
   .tabel-responsive tr {
     margin-bottom: 12px;
     background: var(--culoare-background-zone);
@@ -1160,7 +1271,6 @@ main area::before {
     box-shadow: var(--box-shadow-zone);
   }
 
-  /* Fiecare celulă afișează "etichetă: valoare" */
   .tabel-responsive td {
     padding: 6px 0;
     border-bottom: 1px solid var(--culoare-deschisa);
@@ -1171,7 +1281,6 @@ main area::before {
     border-bottom: none;
   }
 
-  /* Eticheta dinaintea valorii — vine din atributul data-label */
   .tabel-responsive td::before {
     content: attr(data-label) ": ";
     font-weight: 700;
@@ -1180,7 +1289,6 @@ main area::before {
     min-width: 90px;
   }
 
-  /* Anulăm hover-ul / zebra striping pe mobil (nu mai au sens) */
   .tabel-responsive tbody tr:nth-child(even),
   .tabel-responsive tbody tr:hover {
     background: var(--culoare-background-zone);
@@ -1191,9 +1299,51 @@ main area::before {
 /* Identificator: efect-css-reflexie-text                */
 /* ====================================================== */
 
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                    */
+/* Identificator: efect-css-reflexie-text                */
+/* Text înclinat + reflexie pe axa OY                    */
+/* ====================================================== */
+
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                    */
+/* Identificator: efect-css-reflexie-text                */
+/* Două span-uri alături — text + reflexie pe axa OY     */
+/* ====================================================== */
+
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                    */
+/* Identificator: efect-css-reflexie-text                */
+/* Bazat pe exemplul prof: text + reflexie pe axa OY     */
+/* ====================================================== */
+
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                    */
+/* Identificator: efect-css-reflexie-text                */
+/* ====================================================== */
+
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT — varianta SIMPLĂ            */
+/* ====================================================== */
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                    */
+/* Identificator: efect-css-reflexie-text                */
+/* ====================================================== */
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                    */
+/* Identificator: efect-css-reflexie-text                */
+/* Rotație 3D — textele "intră" în pagină                */
+/* ====================================================== */
+
+/* ====================================================== */
+/* Efect CSS: REFLEXIE TEXT (etapa 5)                     */
+/* Identificator: efect-css-reflexie-text                 */
+/* Text înclinat + reflexie pe axa OY                     */
+/* ====================================================== */
+
 #efect-reflexie {
   margin: 30px var(--margine-pagina);
-  padding: 40px 20px;
+  padding: 60px 20px;
   background: var(--culoare-fundal);
   border: 1px solid var(--culoare-border);
   border-radius: var(--border-radius-zone);
@@ -1204,91 +1354,76 @@ main area::before {
 #efect-reflexie h3 {
   color: var(--culoare-inchisa);
   font-size: 1rem;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-style: italic;
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
 }
 
-/* CONTAINER pentru text + reflexia lui */
 .reflexie-container {
   display: inline-flex;
   align-items: center;
-  margin: 20px 0;
-  position: relative;
+  justify-content: center;
+  gap: clamp(0.8rem, 2.5vw, 2rem);
+  cursor: pointer;
+  margin: 30px 0;
 }
 
-/* TEXTUL ORIGINAL */
 .text-reflexie {
-  position: relative;
   font-family: 'Playfair Display', serif;
   font-size: 4rem;
   font-weight: 700;
   color: var(--culoare-principala);
-  cursor: pointer;
-  /* Tranziție pentru schimbarea culorii la hover */
-  transition: color 0.4s ease;
-  /* Display inline-block ca pseudoelementul să se poată poziționa relativ la el */
   display: inline-block;
-  padding: 0 10px;
-}
-
-/* REFLEXIA - prin pseudoelement ::after */
-.text-reflexie::after {
-  /* Folosește textul din atributul data-text */
-  content: attr(data-text);
-
-  /* Poziționare în dreapta textului original (axa OY) */
-  position: absolute;
-  left: 100%;            /* exact la dreapta textului */
-  top: 0;
-
-  /* Aceleași stiluri tipografice ca textul original */
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  padding: inherit;
-
-  /* OGLINDIRE pe axa OY - cu transform */
-  transform: scaleX(-1);
-
-  /* Culoare inițială - mai pală (efect de reflexie reală) */
-  color: var(--culoare-medie);
-  opacity: 0.5;
-
-  /* Mask cu gradient pentru efect de "fade" treptat (ca o reflexie reală) */
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 100%);
-  mask-image: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 100%);
-
-  /* Tranziție pentru schimbarea culorii la hover */
-  transition: color 0.4s ease, opacity 0.4s ease;
-
-  /* Nu vrem să poată fi selectat textul reflexiei */
+  transition: color 0.6s ease, text-shadow 0.6s ease;
+  line-height: 1;
+  white-space: nowrap;
   user-select: none;
-  pointer-events: none;
+  text-shadow: 0 2px 0 var(--culoare-deschisa), 0 12px 22px rgba(0, 0, 0, 0.2);
+  will-change: color, text-shadow;
 }
 
-/* HOVER pe container (textul SAU reflexia) — ambele își schimbă culoarea */
+.text-reflexie--original {
+  transform-origin: right bottom;
+  transform: rotate(-14deg) skewY(-4deg);
+}
+
+.text-reflexie--oglinda {
+  transform-origin: left center;
+  transform: rotate(14deg) skewY(4deg);
+  color: color-mix(in srgb, var(--culoare-principala) 70%, var(--culoare-fundal));
+  opacity: 0.78;
+}
+
+.text-reflexie--oglinda > span {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
 .reflexie-container:hover .text-reflexie {
   color: var(--culoare-inchisa);
-}
-
-.reflexie-container:hover .text-reflexie::after {
-  color: var(--culoare-principala);
-  opacity: 0.7;
+  text-shadow: 0 2px 0 var(--culoare-medie), 0 12px 24px rgba(0, 0, 0, 0.28);
 }
 
 .reflexie-caption {
-  margin-top: 50px;
+  margin-top: 40px;
   font-style: italic;
   color: var(--culoare-text-secundar);
   font-size: 0.9rem;
 }
 
-/* Pe ecran mic, reducem dimensiunea textului */
 @media screen and (max-width: 700px) {
   .text-reflexie {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+
+  .reflexie-container {
+    gap: 1.2rem;
+    transform: scale(0.92);
+  }
+
+  #efect-reflexie {
+    padding: 40px 15px;
   }
 }
 
@@ -1316,4 +1451,51 @@ main area::before {
   color: var(--culoare-text-secundar);
   font-style: italic;
   margin-bottom: 20px;
+}
+
+.anunt-oferta {
+  margin: 18px var(--margine-pagina);
+  padding: 14px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 16px;
+  background: var(--culoare-background-zone);
+  color: var(--culoare-text);
+  border: 2px solid var(--culoare-principala);
+  border-radius: var(--border-radius-zone);
+  box-shadow: var(--box-shadow-zone);
+  text-align: center;
+}
+
+.anunt-oferta strong {
+  color: var(--culoare-inchisa);
+}
+
+.timer-oferta {
+  display: inline-flex;
+  align-items: center;
+  min-width: 6.5rem;
+  justify-content: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--culoare-principala);
+  color: #fff;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-oferta-final {
+  background: #b00020;
+  animation: puls-oferta 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes puls-oferta {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
 }

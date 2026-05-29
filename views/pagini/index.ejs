@@ -18,6 +18,18 @@
     <%- include('../fragmente/header') %>
 
     <main>
+      <!-- BONUS12 - anunt oferta pe prima pagina -->
+      <% if (typeof ofertaCurenta !== 'undefined' && ofertaCurenta) { %>
+        <section id="anunt-oferta" class="anunt-oferta"
+                 data-finalizare="<%= ofertaCurenta['data-finalizare'] %>"
+                 data-categorie="<%= ofertaCurenta.categorie %>"
+                 data-reducere="<%= ofertaCurenta.reducere %>">
+          <strong>Oferta activa:</strong>
+          <span><%= ofertaCurenta.reducere %>% reducere la posterele din categoria <b><%= ofertaCurenta.categorie %></b>.</span>
+          <span id="timer-oferta" class="timer-oferta">--:--:--</span>
+        </section>
+      <% } %>
+
       <div id="grid-pagina">
 
         <section id="despre">
@@ -69,13 +81,13 @@
           </section>
           <!-- Efect CSS - Duotone - cerința etapa 5 (efect-css-duotone) -->
 <section id="efect-duotone">
-  <h3><i class="fa-solid fa-palette"></i> Matematica în natură</h3>
+  <h3><i class="fa-solid fa-palette"></i> Geometrie în duotone</h3>
   <p>Treci cu mouse-ul peste imagine pentru a vedea efectul duotone:</p>
-  <div class="duotone-container" aria-label="Peisaj montan cu efect duotone la hover">
+  <div class="duotone-container" aria-label="Cerc trigonometric cu efect duotone la hover">
     <div class="duotone-imagine"></div>
   </div>
   <figcaption class="duotone-caption">
-    Natura, ca matematica, are propriile sale ritmuri și pattern-uri.
+    Cercul trigonometric evidențiat prin două culori din schema VisuMath.
   </figcaption>
 </section>
           <section id="lectii-disponibile">
@@ -372,9 +384,12 @@
         <!-- Efect CSS - Reflexie text - cerința etapa 5 (efect-css-reflexie-text) -->
 <section id="efect-reflexie">
   <h3>Treci cu mouse-ul peste text pentru a vedea schimbarea de culoare:</h3>
+
   <div class="reflexie-container">
-    <span class="text-reflexie" data-text="VisuMath">VisuMath</span>
+    <span class="text-reflexie text-reflexie--original">VisuMath</span>
+    <span class="text-reflexie text-reflexie--oglinda" aria-hidden="true"><span>VisuMath</span></span>
   </div>
+
   <p class="reflexie-caption">
     Matematica e ca o oglindă a logicii — simetrică, perfectă, surprinzătoare.
   </p>

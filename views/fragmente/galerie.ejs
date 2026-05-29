@@ -1,31 +1,61 @@
 <%
 // Fragment galerie - utilizat atât pe pagina principală cât și pe pagina dedicată /galerie
-// Primește prin locals: obGalerie (cu imagini și luna_curenta)
+// Pattern tablă-de-șah: pe poziții pare (0, 2, 4, 6...) → imagini
+//                       pe poziții impare (1, 3, 5, 7...) → celule goale
 %>
 
 <section class="galerie-statica" aria-label="Galerie de matematică">
   <h2><i class="fa-solid fa-images"></i> Galerie matematică — <%= obGalerie.luna_curenta %></h2>
   <p class="galerie-intro">
     Concepte matematice vizualizate, selectate special pentru luna <strong><%= obGalerie.luna_curenta %></strong>.
-    Toate imaginile sunt sub licență CC0 (creative commons public domain).
+    Imaginile folosesc licențe CC0 sau licențe cu atribuire, unde autorul este indicat.
   </p>
 
   <% if (obGalerie.imagini.length === 0) { %>
     <p class="galerie-empty">Nu există imagini disponibile pentru luna curentă.</p>
   <% } else { %>
     <div class="galerie-grid">
-      <% obGalerie.imagini.forEach((img, idx) => { %>
-        <figure class="galerie-item" title="<%= img.titlu %>">
-          <picture>
-            <source media="(max-width: 1024px)" srcset="/<%= img.cale_relativa_mica %>">
-            <img src="/<%= img.cale_relativa %>" alt="<%= img.alt %>" loading="lazy">
-          </picture>
-          <figcaption>
-            <strong><%= img.titlu %></strong>
-            <span class="galerie-descriere"><%= img.text_descriere %></span>
-          </figcaption>
-        </figure>
-      <% }); %>
+      <%
+        // Construim o tablă completă cu 3 coloane și număr par de rânduri.
+        // Celulele pare sunt imagini, cele impare sunt locuri libere.
+        let indexImagine = 0;
+        let nrRanduri = Math.ceil((obGalerie.imagini.length * 2) / 3);
+        if (nrRanduri % 2 !== 0) {
+          nrRanduri++;
+        }
+        let totalCelule = nrRanduri * 3;
+        while (totalCelule >= 3 && Math.ceil((totalCelule - 3) / 2) >= obGalerie.imagini.length) {
+          totalCelule -= 3;
+        }
+      %>
+      <% for (let pozCelula = 0; pozCelula < totalCelule; pozCelula++) { %>
+        <% if (pozCelula % 2 === 0 && indexImagine < obGalerie.imagini.length) {
+             // Poziție pară → imagine
+             const img = obGalerie.imagini[indexImagine];
+             indexImagine++;
+        %>
+          <figure class="galerie-item galerie-item--imagine">
+            <picture>
+              <source media="(max-width: 700px)" srcset="/<%= img.cale_relativa_mica %>">
+              <source media="(max-width: 1024px)" srcset="/<%= img.cale_relativa_mica %>">
+              <img src="/<%= img.cale_relativa %>" alt="<%= img.alt %>" title="<%= img.text_descriere || img.titlu %>" loading="lazy">
+            </picture>
+            <figcaption>
+              <strong><%= img.titlu %></strong>
+              <span class="galerie-descriere"><%= img.text_descriere %></span>
+              <% if (img.atribuire && img.atribuire.necesita_atribuire) { %>
+                <small class="galerie-atribuire">
+                  Autor:
+                  <a href="<%= img.atribuire.url_autor %>" target="_blank"><%= img.atribuire.autor %></a>,
+                  <a href="<%= img.atribuire.url_sursa %>" target="_blank"><%= img.atribuire.licenta %></a>
+                </small>
+              <% } %>
+            </figcaption>
+          </figure>
+        <% } else { %>
+          <div class="galerie-item galerie-item--gol" aria-hidden="true"></div>
+        <% } %>
+      <% } %>
     </div>
   <% } %>
 </section>

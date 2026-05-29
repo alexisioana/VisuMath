@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+    <title>Postere Matematice – VisuMath</title>
+    <meta name="description" content="Colectia de postere matematice VisuMath – vizualizari de algebra, geometrie, analiza, statistica si combinatorica.">
+    <link rel="stylesheet" href="/resurse/css/produse.css">
+  </head>
+
+  <body id="top">
+    <a href="#top" id="link-top" title="Inapoi la inceput">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <!-- ETAPA6-b - iconuri Bootstrap pentru butoane -->
+      <svg class="d-none" aria-hidden="true">
+        <symbol id="bi-filter" viewBox="0 0 16 16">
+          <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+        </symbol>
+        <symbol id="bi-sort-alpha-down" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10.082 5.629 8.664 1H7.333L5.915 5.629H7.07l.25-.847h1.355l.252.847h1.155zM8 2.441l.48 1.61h-.961L8 2.44z"/>
+          <path d="M11 2.5a.5.5 0 0 1 1 0v9.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 1.999-.007.007a.497.497 0 0 1-.7-.006l-2-2a.5.5 0 0 1 .707-.708L11 12.293V2.5zM4.5 2.5A.5.5 0 0 0 4 2H2.5a.5.5 0 0 0 0 1h.793L2.146 4.146A.5.5 0 0 0 2.5 5H4v.5a.5.5 0 0 0 1 0v-1A.5.5 0 0 0 4.5 4h-.793l1.147-1.146A.5.5 0 0 0 4.5 2.5z"/>
+        </symbol>
+        <symbol id="bi-sort-alpha-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10.082 5.629 8.664 1H7.333L5.915 5.629H7.07l.25-.847h1.355l.252.847h1.155zM8 2.441l.48 1.61h-.961L8 2.44z"/>
+          <path d="M11 13.5a.5.5 0 0 0 1 0V3.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-1.999-.007-.007a.497.497 0 0 0-.7.006l-2 2a.5.5 0 1 0 .707.708L11 3.707V13.5zM4.5 2.5A.5.5 0 0 0 4 2H2.5a.5.5 0 0 0 0 1h.793L2.146 4.146A.5.5 0 0 0 2.5 5H4v.5a.5.5 0 0 0 1 0v-1A.5.5 0 0 0 4.5 4h-.793l1.147-1.146A.5.5 0 0 0 4.5 2.5z"/>
+        </symbol>
+        <symbol id="bi-calculator" viewBox="0 0 16 16">
+          <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+          <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7A.5.5 0 0 1 4 4.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1A.5.5 0 0 1 4 6.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1A.5.5 0 0 1 7 6.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zM4 9.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zM7 9.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zM4 12.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zM7 12.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
+        </symbol>
+        <symbol id="bi-arrow-counterclockwise" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+          <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+        </symbol>
+      </svg>
+
+      <div id="grid-pagina">
+
+        <section id="sectiune-produse">
+          <%
+            // ETAPA6-BONUS1 - valori initiale filtre din datele produselor
+            const preturiPagina = produse.map(p => Number(p.pret));
+            const pretMinPagina = typeof pretMin !== 'undefined' ? pretMin : (preturiPagina.length ? Math.floor(Math.min(...preturiPagina)) : 0);
+            const pretMaxPagina = typeof pretMax !== 'undefined' ? pretMax : (preturiPagina.length ? Math.ceil(Math.max(...preturiPagina)) : 0);
+            const rezolutiiPagina = typeof rezolutii !== 'undefined' ? rezolutii : [150, 300, 600];
+            const produsePePaginaLocal = typeof produsePePagina !== 'undefined' ? produsePePagina : 6;
+            const labelsPagina = typeof labelsFiltre !== 'undefined' ? labelsFiltre : {
+              nume: 'Nume',
+              descriere: 'Descriere',
+              pret: 'Pret',
+              rezolutie: 'Rezolutie',
+              nivel: 'Nivel',
+              descarcabil: 'Descarcabil',
+              culoare: 'Culoare',
+              etichete: 'Etichete'
+            };
+          %>
+          <hgroup>
+            <h2>Postere Matematice</h2>
+            <p>
+              <%= categorieActiva ? 'Categorie: ' + categorieActiva : 'Toate categoriile' %>
+              &mdash; <b><%= produse.length %></b> postere
+            </p>
+          </hgroup>
+
+
+          <div id="sectiune-filtre">
+            <h3>Filtre și sortare</h3>
+
+            <!-- ETAPA6-e -->
+            <div class="row g-3 align-items-start">
+
+              <!-- 1. Input text – filtru dupa NUME (suporta wildcard *) -->
+              <!-- ETAPA6-a - input text Bootstrap -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <label for="filtru-nume"><%= labelsPagina.nume %>:</label>
+                <input type="text" id="filtru-nume" class="form-control form-control-sm" placeholder="ex: Ecuatie sau E*ie">
+                <span class="filtru-info">Folositi * ca wildcard (ex: <em>A*ra</em>)</span>
+                <span id="eroare-nume" class="invalid-feedback" hidden>Numele nu poate contine cifre sau caractere speciale (cu exceptia *).</span>
+              </div>
+
+              <!-- 2. Textarea – filtru dupa DESCRIERE (contine text) -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <!-- ETAPA6-c - floating label Bootstrap -->
+                <div class="form-floating">
+                  <textarea id="filtru-descriere" class="form-control" rows="2" placeholder="Cuvinte cheie din descriere..."></textarea>
+                  <label for="filtru-descriere"><%= labelsPagina.descriere %> contine</label>
+                  <div id="eroare-descriere" class="invalid-feedback" hidden>Introduceti cel putin 2 caractere pentru a filtra dupa descriere.</div>
+                </div>
+              </div>
+
+              <!-- 3. Range PRET MIN -->
+              <div class="filtru-grup filtru-range-grup col-12 col-md-6 col-xl-4">
+                <label for="filtru-pret-min"><%= labelsPagina.pret %> minim:</label>
+                <div class="range-wrapper">
+                  <span class="range-min-label" id="pret-min-afisat"><%= pretMinPagina %> RON</span>
+                  <!-- ETAPA6-a - range Bootstrap pret minim -->
+                  <input type="range" id="filtru-pret-min" class="form-range"
+                         min="<%= pretMinPagina %>" max="<%= pretMaxPagina %>" step="1" value="<%= pretMinPagina %>">
+                  <span class="range-max-label">
+                    <%= pretMaxPagina %> RON
+                    <span class="range-val">(<span id="pret-min-val"><%= pretMinPagina %></span> RON)</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- 4. Range PRET MAX -->
+              <div class="filtru-grup filtru-range-grup col-12 col-md-6 col-xl-4">
+                <label for="filtru-pret-max"><%= labelsPagina.pret %> maxim:</label>
+                <div class="range-wrapper">
+                  <span class="range-min-label"><%= pretMinPagina %> RON</span>
+                  <!-- ETAPA6-a - range Bootstrap pret maxim -->
+                  <input type="range" id="filtru-pret-max" class="form-range"
+                         min="<%= pretMinPagina %>" max="<%= pretMaxPagina %>" step="1" value="<%= pretMaxPagina %>">
+                  <span class="range-max-label">
+                    <%= pretMaxPagina %> RON
+                    <span class="range-val">(<span id="pret-max-val"><%= pretMaxPagina %></span> RON)</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- 5. Datalist – REZOLUTIE (sugestii) -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <label for="filtru-rezolutie"><%= labelsPagina.rezolutie %> minima (DPI):</label>
+                <!-- ETAPA6-a - datalist rezolutie -->
+                <input type="text" id="filtru-rezolutie" class="form-control form-control-sm" list="rezolutii-list" placeholder="ex: 300">
+                <datalist id="rezolutii-list">
+                  <option value="">Oricare</option>
+                  <% rezolutiiPagina.forEach(function(r) { %>
+                    <option value="<%= r %>"><%= r %> DPI</option>
+                  <% }); %>
+                </datalist>
+              </div>
+
+              <!-- 6. Radio – NIVEL DIFICULTATE -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <label class="label-grup"><%= labelsPagina.nivel %> dificultate:</label>
+                <div class="btn-group flex-wrap" role="group" aria-label="Nivel dificultate">
+                  <!-- ETAPA6-d - radio toggle buttons Bootstrap -->
+                  <input type="radio" class="btn-check" name="nivel" id="nivel-orice" value="" checked>
+                  <label class="btn btn-outline-primary btn-sm" for="nivel-orice">Orice nivel</label>
+                  <% niveluri.forEach(function(n) { %>
+                    <input type="radio" class="btn-check" name="nivel" id="nivel-<%= n.toLowerCase() %>" value="<%= n %>">
+                    <label class="btn btn-outline-primary btn-sm" for="nivel-<%= n.toLowerCase() %>"><%= n %></label>
+                  <% }); %>
+                </div>
+              </div>
+
+              <!-- 7. Checkbox – DESCARCABIL -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <label class="label-grup"><%= labelsPagina.descarcabil %>:</label>
+                <!-- ETAPA6-d - checkbox toggle button Bootstrap -->
+                <input type="checkbox" class="btn-check" id="filtru-descarcabil" autocomplete="off">
+                <label class="btn btn-outline-success btn-sm align-self-start" for="filtru-descarcabil">
+                  Arata doar posterele descarcabile gratuit
+                </label>
+              </div>
+
+              <!-- 8. Select simplu – CULOARE DOMINANTA -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <label for="filtru-culoare"><%= labelsPagina.culoare %> dominanta:</label>
+                <!-- ETAPA6-a - select simplu Bootstrap -->
+                <select id="filtru-culoare" class="form-select form-select-sm">
+                  <option value="">Oricare culoare</option>
+                  <% culori.forEach(function(c) { %>
+                    <option value="<%= c %>"><%= c %></option>
+                  <% }); %>
+                </select>
+              </div>
+
+              <!-- 9. Select multiplu – ETICHETE -->
+              <div class="filtru-grup col-12 col-md-6 col-xl-4">
+                <label for="filtru-etichete"><%= labelsPagina.etichete %> (selectie multipla):</label>
+                <!-- ETAPA6-a - select multiplu Bootstrap -->
+                <select id="filtru-etichete" class="form-select form-select-sm" multiple size="5">
+                  <% toateEtichetele.forEach(function(e) { %>
+                    <option value="<%= e %>"><%= e %></option>
+                  <% }); %>
+                </select>
+                <span class="filtru-info">Ctrl+Click pentru selectie multipla</span>
+              </div>
+
+            </div><!-- /.row -->
+
+            <!-- ═══ BUTOANE ═══ -->
+            <!-- ETAPA6-b - butoane Bootstrap cu iconuri -->
+            <div id="butoane-actiuni">
+              <button id="btn-filtreaza" class="btn btn-primary btn-sm">
+                <svg class="bi" aria-hidden="true"><use href="#bi-filter"></use></svg>
+                <span class="btn-text">Filtreaza</span>
+              </button>
+              <button id="btn-sort-asc" class="btn btn-outline-primary btn-sm">
+                <svg class="bi" aria-hidden="true"><use href="#bi-sort-alpha-up"></use></svg>
+                <span class="btn-text">Sortare &#8593;</span>
+              </button>
+              <button id="btn-sort-desc" class="btn btn-outline-primary btn-sm">
+                <svg class="bi" aria-hidden="true"><use href="#bi-sort-alpha-down"></use></svg>
+                <span class="btn-text">Sortare &#8595;</span>
+              </button>
+              <button id="btn-calculeaza" class="btn btn-outline-info btn-sm">
+                <svg class="bi" aria-hidden="true"><use href="#bi-calculator"></use></svg>
+                <span class="btn-text">Calculeaza medie</span>
+              </button>
+              <button id="btn-reseteaza" class="btn btn-outline-danger btn-sm">
+                <svg class="bi" aria-hidden="true"><use href="#bi-arrow-counterclockwise"></use></svg>
+                <span class="btn-text">Reseteaza</span>
+              </button>
+            </div>
+
+          </div>
+
+          <div id="zona-produse">
+<!--parcurgere produse-->
+            <% produse.forEach(function(p) {
+         
+                const luni = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                              'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+                const zileS = ['Duminica','Luni','Marti','Miercuri','Joi','Vineri','Sambata'];
+                const d = new Date(p.data_adaugare);
+                const dataFormatata = `${d.getDate()}/${luni[d.getMonth()]}/${d.getFullYear()} (${zileS[d.getDay()]})`;
+                const dataISO = p.data_adaugare.toISOString ? p.data_adaugare.toISOString().split('T')[0] : String(p.data_adaugare).split('T')[0];
+                const eticheteLista = p.etichete.split(',').map(e => e.trim());
+           
+                const pretOriginal = Number(p.pret);
+                
+                const areOferta = typeof ofertaCurenta !== 'undefined' && ofertaCurenta && ofertaCurenta.categorie === p.categorie;
+                const pretRedus = areOferta ? pretOriginal * (100 - Number(ofertaCurenta.reducere)) / 100 : pretOriginal;
+            %>
+            <article
+              id="art<%= p.id %>"
+              class="card-produs <%= p.categorie %>"
+              data-id="<%= p.id %>"
+              data-nume="<%= p.nume.toLowerCase() %>"
+              data-categorie="<%= p.categorie %>"
+              data-nivel="<%= p.nivel %>"
+              data-pret="<%= p.pret %>"
+              data-rezolutie="<%= p.rezolutie %>"
+              data-culoare="<%= p.culoare %>"
+              data-etichete="<%= p.etichete.toLowerCase() %>"
+              data-descarcabil="<%= p.descarcabil %>"
+              data-descriere="<%= p.descriere.toLowerCase() %>"
+              data-desc-len="<%= p.descriere.length %>"
+              data-imagine="<%= p.imagine %>"
+              data-data="<%= dataFormatata %>"
+              data-pret-redus="<%= pretRedus.toFixed(2) %>"
+              data-oferta="<%= areOferta ? ofertaCurenta.reducere : '' %>"
+            >
+              <h3><a href="/produs/<%= p.id %>"><%= p.nume %></a></h3>
+              <p class="card-categorie">
+                <span class="badge-categorie"><%= p.categorie %></span>
+                <span class="badge-nivel nivel-<%= p.nivel.toLowerCase() %>"><%= p.nivel %></span>
+                <% if (areOferta) { %>
+                  <span class="badge-oferta">Oferta -<%= ofertaCurenta.reducere %>%</span>
+                <% } %>
+              </p>
+              <p class="card-descriere"><%= p.descriere %></p>
+
+              <div class="card-continut">
+                <a href="/produs/<%= p.id %>" class="card-imagine-link">
+                  <img
+                    src="<%= p.imagine %>"
+                    alt="Poster <%= p.nume %>"
+                    class="card-imagine"
+                    onerror="this.src='/resurse/img/galerie/02-teorema-pitagora.jpg'; this.onerror=null;">
+                </a>
+
+                <table class="card-tabel">
+                  <tbody>
+                    <tr>
+                      <td class="tabel-cheie">Pret</td>
+                      <td class="tabel-val">
+                        <% if (areOferta) { %>
+                          <del class="pret-vechi"><%= pretOriginal.toFixed(2) %> RON</del>
+                          <b class="pret-redus"><%= pretRedus.toFixed(2) %> RON</b>
+                        <% } else { %>
+                          <b><%= pretOriginal.toFixed(2) %> RON</b>
+                        <% } %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tabel-cheie">Rezolutie</td>
+                      <td class="tabel-val"><%= p.rezolutie %> DPI</td>
+                    </tr>
+                    <tr>
+                      <td class="tabel-cheie">Culoare</td>
+                      <td class="tabel-val">
+                        <span class="dot-culoare dot-<%= p.culoare.toLowerCase() %>"></span>
+                        <%= p.culoare %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tabel-cheie">Etichete</td>
+                      <td class="tabel-val">
+                        <% eticheteLista.forEach(function(e) { %>
+                          <span class="badge-eticheta"><%= e %></span>
+                        <% }); %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tabel-cheie">Adaugat</td>
+                      <td class="tabel-val">
+                        <time datetime="<%= dataISO %>"><%= dataFormatata %></time>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tabel-cheie">Descarcabil</td>
+                      <td class="tabel-val">
+                        <% if (p.descarcabil) { %>
+                          <i class="fa-solid fa-check" style="color:green"></i> Da
+                        <% } else { %>
+                          <i class="fa-solid fa-xmark" style="color:#c00"></i> Nu
+                        <% } %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card-footer">
+                <a href="/produs/<%= p.id %>" class="btn-detalii">
+                  <i class="fa-solid fa-circle-info"></i> Detalii complete
+                </a>
+              </div>
+            </article>
+            <% }); %>
+          </div>
+
+     
+          <p id="mesaj-gol" hidden>Nu exista produse conform filtrarii curente.</p>
+   
+          <nav id="paginare-produse" class="paginare-produse" aria-label="Paginare produse"></nav>
+
+          <div id="modal-produs" class="modal-produs" hidden>
+            <div class="modal-produs-backdrop" data-inchide-modal></div>
+            <section class="modal-produs-box" role="dialog" aria-modal="true" aria-labelledby="modal-produs-titlu">
+              <button type="button" id="modal-produs-inchide" class="modal-produs-inchide" aria-label="Inchide modalul">&times;</button>
+              <div id="modal-produs-continut"></div>
+            </section>
+          </div>
+
+        </section>
+      </div><!-- /#grid-pagina -->
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+    <script>
+      window.PRET_MIN = <%= pretMinPagina %>;
+      window.PRET_MAX = <%= pretMaxPagina %>;
+      window.PRODUSE_PE_PAGINA = <%= produsePePaginaLocal %>;
+    </script>
+    <script src="/resurse/js/produse.js"></script>
+  </body>
+</html>

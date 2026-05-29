@@ -3,23 +3,25 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const sharp = require('sharp');
+const db = require('./db');
 const port = 8080;
 
-// Afișare căi - cerința 3
+// 3.a - cai proiect
 console.log("__dirname  =", __dirname);
 console.log("__filename =", __filename);
 console.log("process.cwd() =", process.cwd());
 
-// Setare EJS ca template engine - cerința 4
+// 4 - template EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views', 'pagini'));
 
-// Variabila globală - cerința 13
-// Variabila globală - cerința 13 (etapa 4) + a-cerința 2 (etapa 5)
+// 5 - globale proiect
 var obGlobal = {
     obErori: null,
     obGalerie: null,
     obGalerieAnimata: null,
+    categoriiProduse: [],
+    ofertaCurenta: null,
     folderScss: path.join(__dirname, 'resurse', 'css'),
     folderCss: path.join(__dirname, 'resurse', 'css'),
     folderBackup: path.join(__dirname, 'backup')
@@ -108,6 +110,7 @@ function extrageChei(textObiect) {
     return chei;
 }
 // Funcția initErori() - cerința 13 + bonusuri
+// 3.g - validare fisier erori JSON
 function initErori() {
     const caleJSON = path.join(__dirname, 'erori.json');
 
@@ -294,6 +297,19 @@ async function initGalerie() {
 
     const continut = fs.readFileSync(caleJSON, 'utf-8');
     const obj = JSON.parse(continut);
+    const caleAtribuiri = path.join(__dirname, 'resurse', 'atribuiri.json');
+    let atribuiriDupaFisier = {};
+
+    if (fs.existsSync(caleAtribuiri)) {
+        try {
+            const objAtribuiri = JSON.parse(fs.readFileSync(caleAtribuiri, 'utf-8'));
+            atribuiriDupaFisier = Object.fromEntries(
+                (objAtribuiri.imagini || []).map(atr => [atr.fisier, atr])
+            );
+        } catch (err) {
+            console.error('[Galerie] Nu pot citi resurse/atribuiri.json:', err.message);
+        }
+    }
 
     // Determinăm luna curentă în română
     const luniRomana = [
@@ -329,6 +345,7 @@ async function initGalerie() {
         // Salvăm calea relativă (pentru folosire în template-uri)
         img.cale_relativa = path.join(obj.cale_galerie, img.cale_fisier).replace(/\\/g, '/');
         img.cale_relativa_mica = path.join(obj.cale_galerie, numeMic).replace(/\\/g, '/');
+        img.atribuire = atribuiriDupaFisier[img.cale_fisier] || null;
 
         // Adăugăm proprietate "alt" dacă lipsește (fallback la titlu)
         if (!img.alt) {
@@ -590,19 +607,40 @@ function genereazaScssGalerieAnimata(n) {
   let keyframes = '';
     const dur_per_img = 100 / n;  // procentaj din animație pentru fiecare imagine
     
-    // ORDINE DE PARCURGERE - boustrophedon (zigzag pe rânduri, direcție alternată)
-    // Rândurile pare: stânga → dreapta. Rândurile impare: dreapta → stânga.
+    // ORDINE DE PARCURGERE
+    // Pentru n=9, numerele din matrice reprezinta ordinea in care se face zoom:
+    // 1 3 2
+    // 7 4 5
+    // 9 8 6
     const ordine = [];
-    for (let r = 0; r < rand; r++) {
-        if (r % 2 === 0) {
-            // rând par: stânga → dreapta
-            for (let c = 0; c < rand; c++) {
-                ordine.push({ row: r, col: c });
+    const matriceOrdine = {
+        3: [
+            [1, 3, 2],
+            [7, 4, 5],
+            [9, 8, 6]
+        ]
+    };
+
+    if (matriceOrdine[rand]) {
+        for (let pas = 1; pas <= n; pas++) {
+            for (let r = 0; r < rand; r++) {
+                for (let c = 0; c < rand; c++) {
+                    if (matriceOrdine[rand][r][c] === pas) {
+                        ordine.push({ row: r, col: c });
+                    }
+                }
             }
-        } else {
-            // rând impar: dreapta → stânga (direcție alternată)
-            for (let c = rand - 1; c >= 0; c--) {
-                ordine.push({ row: r, col: c });
+        }
+    } else {
+        for (let r = 0; r < rand; r++) {
+            if (r % 2 === 0) {
+                for (let c = 0; c < rand; c++) {
+                    ordine.push({ row: r, col: c });
+                }
+            } else {
+                for (let c = rand - 1; c >= 0; c--) {
+                    ordine.push({ row: r, col: c });
+                }
             }
         }
     }
@@ -617,19 +655,16 @@ function genereazaScssGalerieAnimata(n) {
         const proc_stay = proc_inceput + dur_per_img * 0.7;       // stă 40% pe imagine
         const proc_zoom_out = proc_inceput + dur_per_img;         // 30% transition out
         
-      // Pentru ca celula (row, col) să umple containerul:
-        // translatăm gridul cu -col/-row celule (în procente din dimensiunea gridului)
-        // apoi scalăm. Cu transform-origin: top left și ordinea translate→scale,
-        // procentele de translate sunt relative la dimensiunea elementului (grid).
-        // O celulă = 100/rand % din grid. Pentru a aduce celula (row,col) la origine:
-        const tx = -(col * 100 / rand);  // % din lățimea gridului
-        const ty = -(row * 100 / rand);  // % din înălțimea gridului
+        // Pentru ca celula (row, col) să umple containerul:
+        // scalăm gridul cu rand, apoi îl mutăm cu câte o lățime/înălțime de container
+        // pentru fiecare coloană/rând. În CSS, transformările se compun în ordine,
+        // iar forma translate(... ) scale(...) păstrează celula curentă centrată în cadru.
+        const tx = -(col * 100);  // % din lățimea containerului
+        const ty = -(row * 100);  // % din înălțimea containerului
         
-        // ORDINEA CORECTĂ: translate ÎNAINTE de scale
-        // Astfel translate-ul folosește coordonatele originale (nescalate)
-        keyframes += `  ${proc_zoom_in.toFixed(2)}% { transform: scale(${rand}) translate(${tx.toFixed(4)}%, ${ty.toFixed(4)}%); }\n`;
-        keyframes += `  ${proc_stay.toFixed(2)}% { transform: scale(${rand}) translate(${tx.toFixed(4)}%, ${ty.toFixed(4)}%); }\n`;
-        keyframes += `  ${proc_zoom_out.toFixed(2)}% { transform: scale(1) translate(0%, 0%); }\n`;
+        keyframes += `  ${proc_zoom_in.toFixed(2)}% { transform: translate(${tx.toFixed(4)}%, ${ty.toFixed(4)}%) scale(${rand}); }\n`;
+        keyframes += `  ${proc_stay.toFixed(2)}% { transform: translate(${tx.toFixed(4)}%, ${ty.toFixed(4)}%) scale(${rand}); }\n`;
+        keyframes += `  ${proc_zoom_out.toFixed(2)}% { transform: translate(0%, 0%) scale(1); }\n`;
     }
     
     const continut = `// Fișier SCSS generat automat de Node.js
@@ -685,8 +720,8 @@ $border-width: 30px;
 
 // Keyframes generate dinamic pentru ${n} imagini
 @keyframes zoom-galerie {
-  0% { transform: scale(1) translate(0, 0); }
-${keyframes}  100% { transform: scale(1) translate(0, 0); }
+  0% { transform: translate(0, 0) scale(1); }
+${keyframes}  100% { transform: translate(0, 0) scale(1); }
 }
 
 // Ascunsă pe ecran mediu și mic
@@ -726,6 +761,7 @@ for (let nume_folder of vect_foldere) {
 }
 
 // Funcția afisareEroare() - cerința 14
+// 7 - afisare pagina de eroare
 function afisareEroare(res, req, identificator, titlu, text, imagine) {
     let eroareGasita = null;
     if (identificator !== undefined && identificator !== null) {
@@ -760,6 +796,107 @@ function afisareEroare(res, req, identificator, titlu, text, imagine) {
     res.render('eroare', eroareFinala);
 }
 
+function formateazaDataRo(data) {
+    const luni = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                  'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+    const zileS = ['Duminica','Luni','Marti','Miercuri','Joi','Vineri','Sambata'];
+    const d = new Date(data);
+    return `${d.getDate()}/${luni[d.getMonth()]}/${d.getFullYear()} (${zileS[d.getDay()]})`;
+}
+
+function dataISO(data) {
+    return new Date(data).toISOString().split('T')[0];
+}
+
+// ETAPA6-BONUS12 - oferte JSON
+const caleOferte = path.join(__dirname, 'oferte.json');
+const intervalOfertaMs = 2 * 60 * 1000;
+const stergereOferteVechiMs = 10 * 60 * 1000;
+const valoriReducere = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+
+function citesteOferte() {
+    if (!fs.existsSync(caleOferte)) {
+        return { oferte: [] };
+    }
+
+    try {
+        const continut = fs.readFileSync(caleOferte, 'utf-8');
+        const obj = JSON.parse(continut);
+        if (!obj || !Array.isArray(obj.oferte)) {
+            return { oferte: [] };
+        }
+        return obj;
+    } catch (err) {
+        console.error('[Oferte] Nu pot citi oferte.json:', err.message);
+        return { oferte: [] };
+    }
+}
+
+function scrieOferte(obj) {
+    fs.writeFileSync(caleOferte, JSON.stringify(obj, null, 2));
+}
+
+function alegeAleator(vector) {
+    return vector[Math.floor(Math.random() * vector.length)];
+}
+
+async function actualizeazaOferta() {
+    if (!obGlobal.categoriiProduse || obGlobal.categoriiProduse.length === 0) {
+        obGlobal.categoriiProduse = await db.getEnumValues('categorie_matematica');
+    }
+
+    const acum = new Date();
+    const obj = citesteOferte();
+    obj.oferte = obj.oferte.filter(oferta => {
+        const finalizare = new Date(oferta['data-finalizare']);
+        return acum - finalizare <= stergereOferteVechiMs;
+    });
+
+    const primaOferta = obj.oferte[0];
+    if (primaOferta && new Date(primaOferta['data-finalizare']) > acum) {
+        obGlobal.ofertaCurenta = primaOferta;
+        scrieOferte(obj);
+        return primaOferta;
+    }
+
+    const categorieAnterioara = primaOferta ? primaOferta.categorie : null;
+    const categoriiDisponibile = obGlobal.categoriiProduse.filter(c => c !== categorieAnterioara);
+    const categorie = alegeAleator(categoriiDisponibile.length ? categoriiDisponibile : obGlobal.categoriiProduse);
+    const reducere = alegeAleator(valoriReducere);
+    const finalizare = new Date(acum.getTime() + intervalOfertaMs);
+
+    const ofertaNoua = {
+        categorie,
+        'data-incepere': acum.toISOString(),
+        'data-finalizare': finalizare.toISOString(),
+        reducere
+    };
+
+    obj.oferte.unshift(ofertaNoua);
+    obGlobal.ofertaCurenta = ofertaNoua;
+    scrieOferte(obj);
+    return ofertaNoua;
+}
+
+// ETAPA6-MENIU - categorii din enum DB pentru header
+app.use(async (req, res, next) => {
+    if (req.path.startsWith('/resurse') || req.path === '/favicon.ico') {
+        return next();
+    }
+    try {
+        if (!obGlobal.categoriiProduse || obGlobal.categoriiProduse.length === 0) {
+            obGlobal.categoriiProduse = await db.getEnumValues('categorie_matematica');
+        }
+        res.locals.categoriiProduse = obGlobal.categoriiProduse;
+        res.locals.ofertaCurenta = await actualizeazaOferta();
+    } catch (err) {
+        console.error('[DB] Nu pot citi enum-ul categorie_matematica:', err.message);
+        res.locals.categoriiProduse = [];
+        res.locals.ofertaCurenta = null;
+    }
+    next();
+});
+
 // Cerința 17 - eroare 403 pentru cereri către foldere din /resurse/
 // IMPORTANT: trebuie ÎNAINTE de app.use('/resurse', express.static(...))
 // Folosim middleware general care prinde TOATE cererile către /resurse/...
@@ -780,10 +917,10 @@ app.use('/resurse', (req, res, next) => {
     }
 });
 
-// Folder static cu resurse - cerința 6
+// 6 - resurse statice
 app.use('/resurse', express.static(path.join(__dirname, 'resurse')));
 
-// Ruta pentru pagina index - cerința 8
+// 8 - pagina index
 app.get(['/', '/index', '/home'], (req, res) => {
     // Regenerează galeria animată la fiecare cerere (număr aleator nou)
     initGalerieAnimata();
@@ -800,14 +937,115 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'resurse', 'ico', 'favicon.ico'));
 });
 
+// BONUS12 - endpoint JSON pentru oferta curenta
+app.get('/oferta-curenta', async (req, res) => {
+    try {
+        const oferta = await actualizeazaOferta();
+        res.json({ oferta });
+    } catch (err) {
+        console.error('[Oferte] Eroare la oferta curenta:', err.message);
+        res.status(500).json({ oferta: null });
+    }
+});
+
+// ETAPA6-PRODUSE - lista produse + filtrare server pe categorie
+app.get(['/produse', '/produse/:categorie'], async (req, res) => {
+    try {
+        const categorii = res.locals.categoriiProduse || [];
+        const categorie = req.params.categorie;
+        let sql = 'SELECT * FROM produse';
+        const params = [];
+
+        if (categorie) {
+            if (!categorii.includes(categorie)) {
+                return afisareEroare(res, req, 404);
+            }
+            sql += ' WHERE categorie = $1';
+            params.push(categorie);
+        }
+
+        sql += ' ORDER BY id';
+        const rezultat = await db.query(sql, params);
+        const produse = rezultat.rows;
+
+        // ETAPA6-BONUS1 - valori filtre generate din DB
+        const valori = (camp) => [...new Set(produse.map(p => p[camp]).filter(Boolean))]
+            .sort((a, b) => String(a).localeCompare(String(b), 'ro'));
+        const toateEtichetele = [...new Set(produse.flatMap(p => p.etichete.split(',').map(e => e.trim()).filter(Boolean)))]
+            .sort((a, b) => a.localeCompare(b, 'ro'));
+        const pretMin = produse.length ? Math.floor(Math.min(...produse.map(p => Number(p.pret)))) : 0;
+        const pretMax = produse.length ? Math.ceil(Math.max(...produse.map(p => Number(p.pret)))) : 0;
+        const rezolutii = valori('rezolutie').map(Number).sort((a, b) => a - b);
+        const rezolutieMin = rezolutii.length ? Math.min(...rezolutii) : 0;
+        const coloaneRezultat = await db.query(
+            "SELECT column_name FROM information_schema.columns WHERE table_name = $1",
+            ['produse']
+        );
+        const labelsFiltre = Object.fromEntries(
+            coloaneRezultat.rows.map(({ column_name }) => [
+                column_name,
+                column_name
+                    .split('_')
+                    .map(cuv => cuv.charAt(0).toUpperCase() + cuv.slice(1))
+                    .join(' ')
+            ])
+        );
+
+        res.render('produse', {
+            ip: req.ip,
+            obGalerie: obGlobal.obGalerie,
+            produse,
+            categorieActiva: categorie,
+            pretMin,
+            pretMax,
+            rezolutieMin,
+            rezolutii,
+            labelsFiltre,
+            niveluri: valori('nivel'),
+            culori: valori('culoare'),
+            toateEtichetele,
+            produsePePagina: 6
+        });
+    } catch (err) {
+        console.error('[DB] Eroare la afisarea produselor:', err.message);
+        afisareEroare(res, req);
+    }
+});
+
+// ETAPA6-UNIC - pagina produs individual
+app.get('/produs/:id', async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        if (!Number.isInteger(id)) {
+            return afisareEroare(res, req, 404);
+        }
+
+        const rezultat = await db.query('SELECT * FROM produse WHERE id = $1', [id]);
+        if (rezultat.rowCount === 0) {
+            return afisareEroare(res, req, 404);
+        }
+
+        const produs = rezultat.rows[0];
+        res.render('produs', {
+            ip: req.ip,
+            obGalerie: obGlobal.obGalerie,
+            produs,
+            dataFormatata: formateazaDataRo(produs.data_adaugare),
+            dataISO: dataISO(produs.data_adaugare)
+        });
+    } catch (err) {
+        console.error('[DB] Eroare la afisarea produsului:', err.message);
+        afisareEroare(res, req);
+    }
+});
+
 // Cerința 18 - eroare 400 pentru orice fișier .ejs
 // IMPORTANT: trebuie ÎNAINTE de app.get('/:pagina', ...)
 app.get(/\.ejs$/, (req, res) => {
     afisareEroare(res, req, 400);
 });
 
-// Ruta generică pentru orice altă pagină - cerința 9 + 10
-// Ruta generică pentru orice altă pagină - cerința 9 + 10
+// 9-10 - ruta generica pagini
 app.get('/:pagina', (req, res) => {
     res.render(req.params.pagina, { 
         ip: req.ip,

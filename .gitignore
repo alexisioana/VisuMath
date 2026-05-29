@@ -13,3 +13,8 @@ Thumbs.db
 
 # Fișiere VS Code (opțional)
 .vscode/
+
+# Fișiere mari (depășesc limita GitHub de 100MB)
+resurse/img/galerie/*.exe
+resurse/img/galerie/*.msi
+resurse/img/galerie/*.zip

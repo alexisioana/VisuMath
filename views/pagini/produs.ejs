@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <%- include('../fragmente/head') %>
+    <title><%= produs.nume %> - VisuMath</title>
+    <meta name="description" content="<%= produs.descriere %>">
+    <link rel="stylesheet" href="/resurse/css/produse.css">
+  </head>
+
+  <body id="top">
+    <a href="#top" id="link-top" title="Inapoi la inceput">
+      <span id="triunghi">&#9651;</span>
+    </a>
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+      <!-- ETAPA6-UNIC - pagina produs individual cu toate detaliile -->
+      <section class="pagina-produs">
+        <p><a href="/produse">Inapoi la produse</a></p>
+        <h2><%= produs.nume %></h2>
+        <p class="card-categorie">
+          <span class="badge-categorie"><%= produs.categorie %></span>
+          <span class="badge-nivel"><%= produs.nivel %></span>
+        </p>
+
+        <div class="produs-detaliu-grid">
+          <figure>
+            <img src="<%= produs.imagine %>" alt="Poster <%= produs.nume %>" onerror="this.src='/resurse/img/galerie/02-teorema-pitagora.jpg'; this.onerror=null;">
+          </figure>
+
+          <div>
+            <p><%= produs.descriere %></p>
+            <table class="card-tabel tabel-detalii">
+              <tbody>
+                <tr><td>Id</td><td><%= produs.id %></td></tr>
+                <tr><td>Categorie mare</td><td><%= produs.categorie %></td></tr>
+                <tr><td>Nivel dificultate</td><td><%= produs.nivel %></td></tr>
+                <tr><td>Pret</td><td><%= parseFloat(produs.pret).toFixed(2) %> RON</td></tr>
+                <tr><td>Rezolutie</td><td><%= produs.rezolutie %> DPI</td></tr>
+                <tr>
+                  <td>Data adaugarii</td>
+                  <td><time datetime="<%= dataISO %>"><%= dataFormatata %></time></td>
+                </tr>
+                <tr><td>Culoare dominanta</td><td><%= produs.culoare %></td></tr>
+                <tr><td>Etichete</td><td><%= produs.etichete %></td></tr>
+                <tr><td>Descarcabil gratuit</td><td><%= produs.descarcabil ? 'Da' : 'Nu' %></td></tr>
+                <tr><td>Format livrare</td><td><%= produs.format_print || 'Nespecificat' %></td></tr>
+                <tr><td>Durata acces</td><td><%= produs.durata_acces ? produs.durata_acces + ' zile' : 'Nespecificat' %></td></tr>
+                <tr><td>Licenta</td><td><%= produs.licenta || 'Nespecificat' %></td></tr>
+                <tr><td>Cale imagine</td><td><%= produs.imagine %></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+  </body>
+</html>

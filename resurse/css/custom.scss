@@ -1,23 +1,15 @@
-// ====================================================
-// Custom Bootstrap pentru VisuMath
-// Cerința 3 - Etapa 5 (0.25p)
-// ====================================================
-// Modificăm variabilele Bootstrap conform schemei cromatice VisuMath
-// înainte de a importa Bootstrap-ul.
+// ETAPA6-a/b - tema Bootstrap custom pentru inputuri si butoane
+$primary: #1a73e8;       
+$info:    #4a90d9;      
+$success: #0d47a1;       
+$warning: #a8c8ec;       
 
-// ------ 1. CULORI DE BACKGROUND pentru teme ------
-$primary: #1a73e8;       // tema 1 - albastru principal VisuMath
-$info:    #4a90d9;       // tema 2 - albastru mediu VisuMath
-$success: #0d47a1;       // tema 3 - albastru închis
-$warning: #a8c8ec;       // tema 4 - albastru deschis
-
-// ------ 2. CULORI DE FONT (litere) ------
 $body-color:           #1a1a1a;
 $body-secondary-color: #5a5a5a;
 $link-color:           #1a73e8;
 $link-hover-color:     #0d47a1;
 
-// ------ 3. DIMENSIUNI DE ECRAN ------
+// ETAPA6-e - breakpoint-uri Bootstrap folosite de gridul responsive
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -27,12 +19,31 @@ $grid-breakpoints: (
   xxl: 1500px
 );
 
-// ------ 4. RAZELE DE BORDER ------
+// ETAPA6-b - raza si grosime borduri prin variabile Sass Bootstrap
 $border-radius:    10px;
 $border-radius-sm: 6px;
 $border-radius-lg: 16px;
+$border-width: 2px;
 
-// ------ 5. DIMENSIUNEA LITERELOR (headings) ------
+$btn-border-width: 2px;
+$btn-border-radius: 8px;
+$btn-border-radius-sm: 6px;
+$btn-border-radius-lg: 10px;
+
+$input-border-width: 2px;
+$input-border-radius: 8px;
+$form-select-border-radius: 8px;
+$form-check-input-border: 2px solid #4a90d9;
+
+// ETAPA6-range - slider Bootstrap customizat prin variabile
+$form-range-track-bg: #a8c8ec;
+$form-range-track-height: 0.55rem;
+$form-range-thumb-width: 1.5rem;
+$form-range-thumb-height: 1.5rem;
+$form-range-thumb-bg: #0d47a1;
+$form-range-thumb-focus-box-shadow: 0 0 0 0.25rem rgba(26, 115, 232, 0.25);
+$form-range-thumb-active-bg: #4a90d9;
+
 $h1-font-size: 2.2rem;
 $h2-font-size: 1.6rem;
 $h3-font-size: 1.3rem;
@@ -40,12 +51,10 @@ $h4-font-size: 1.15rem;
 $h5-font-size: 1rem;
 $h6-font-size: 0.9rem;
 
-// ------ 6. FAMILIA DE FONT IMPLICITĂ ------
 $font-family-sans-serif: 'Nunito', Arial, sans-serif;
 $headings-font-family:   'Playfair Display', serif;
 $headings-font-weight:   700;
 
-// ------ 7. ALTE VARIABILE BOOTSTRAP CUSTOMIZATE ------
 $btn-padding-x:     1.2rem;
 $btn-padding-y:     0.5rem;
 $btn-font-weight:   600;
@@ -53,8 +62,5 @@ $card-border-color: #4a90d9;
 $card-border-width: 2px;
 $navbar-padding-y:  0.8rem;
 
-// ====================================================
-// IMPORTĂM BOOTSTRAP DUPĂ ce am setat variabilele
-// Folosim @import (vechi dar stabil) - Bootstrap intern îl folosește deja
-// ====================================================
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
